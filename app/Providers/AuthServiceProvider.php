@@ -30,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         if ( !app()->runningInConsole() || app()->runningUnitTests() ) {
 
             Gate::define('owner', function(User $user, $data){
+
                 return $user->id == $data->user_id;
             });
 
@@ -37,6 +38,7 @@ class AuthServiceProvider extends ServiceProvider
 
                 return $user->id == $id;
             });
+
 
             //Recuperar todas permissions
             $permissions = Permission::all();

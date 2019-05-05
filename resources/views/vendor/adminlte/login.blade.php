@@ -65,6 +65,7 @@
                        class="text-center"
                     >{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>
                 @endif
+
             </div>
         </div>
         <!-- /.login-box-body -->

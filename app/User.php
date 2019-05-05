@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App\Models\Idea;
 use App\Models\Permission;
 use App\Models\Profile;
+use App\Models\Sector;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -17,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','facebook', 'twitter', 'github','site','biography', 'image'
+        'name', 'last_name', 'email', 'password','rg', 'cpf', 'birth_date','sex','marital_status', 'image','sector_id'
 
     ];
 
@@ -33,30 +36,33 @@ class User extends Authenticatable
     public function rules($id = '')
     {
         return [
-            'name'      => 'required|min:3|max:100',
-            'email'     => "required|min:3|max:100|email|unique:users,email,{$id},id",
-            'password'  => 'required|min:3|max:200|confirmed',
-            'facebook'  => 'required|min:3|max:100',
-            'twitter'   => 'required|min:3|max:100',
-            'github'    => 'required|min:3|max:100',
-            'site'      => 'required|min:3|max:200',
-            'biography' => 'required|min:3|max:1000',
-            'image'     => 'image',
+            'name'          => 'required|min:3|max:255',
+            'last_name'     => 'required|min:3|max:255',
+            'email'         => "required|min:3|max:100|email|unique:users,email,{$id},id",
+            'password'      => "required|min:3|max:200",
+            'rg'            => 'required|max:14',
+            'cpf'           => "required|cpf|unique:users,cpf,{$id},id",
+            'birth_date'    => 'required|date',
+            'sex'           => 'required',
+            'marital_status'=> 'required',
+            'sector_id'     => 'required',
+            'image'         => 'image|max:2048',
         ];
     }
 
-    public function rulesEdit($id = '')
+    public function rulesCustom($id = '')
     {
         return [
-            'name'      => 'required|min:3|max:100',
-            'email'     => "min:3|max:100|email|unique:users,email,{$id},id",
-            'password'  => 'required|min:3|max:200|confirmed',
-            'facebook'  => 'required|min:3|max:100',
-            'twitter'   => 'required|min:3|max:100',
-            'github'    => 'required|min:3|max:100',
-            'site'      => 'required|min:3|max:200',
-            'biography' => 'required|min:3|max:1000',
-            'image'     => 'image',
+            'name'          => 'required|min:3|max:255',
+            'last_name'     => 'required|min:3|max:255',
+            'email'         => "required|min:3|max:100|email|unique:users,email,{$id},id",
+            'password'      => "required|min:3|max:200|confirmed",
+            'rg'            => 'required|max:14',
+            'cpf'           => "required|cpf|unique:users,cpf,{$id},id",
+            'birth_date'    => 'required|date',
+            'sex'           => 'required',
+            'marital_status'=> 'required',
+            'image'         => 'image|max:2048',
         ];
     }
 
@@ -80,6 +86,18 @@ class User extends Authenticatable
         return !! $profile->intersect($this->profiles)->count();
 
     }
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class, 'id');
+    }
+
+    public function sectorid()
+    {
+        return $this->belongsTo(Sector::class, 'sector_id');
+    }
+
+
 }
 
 

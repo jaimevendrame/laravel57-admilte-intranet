@@ -27,7 +27,10 @@ $this->get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-$this->post('register', 'Auth\RegisterController@register');
+//$this->post('register', 'Auth\RegisterController@register');
+$this->post('registro', 'Painel\UserController@register')->name('registro');
+
+
 
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -36,10 +39,16 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
+//Route::fallback(function() {
+//    return view('errors.404');
+//})->name(404);
+
+
+
 /****************************************************************************************
  * Rotas do Site
  ****************************************************************************************/
-//Auth::routes();
+Auth::routes(['verify' => true]);
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/create-lead', 'Site\SiteController@create')->name('site.create');
@@ -56,7 +65,7 @@ Route::get('/', 'Site\SiteController@index')->name('site');
 /****************************************************************************************
  * Rotas do Painel
 ****************************************************************************************/
-Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function (){
+Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], function (){
     //Usuários
     Route::any('/usuario/{id}/perfis/pesquisar', 'Painel\UserController@searchProfile')->name('user.profiles.search');
     Route::get('/usuario/{id}/perfis/{profileid}/delete', 'Painel\UserController@deleteProfile')->name('user.profile.delete');
@@ -112,14 +121,15 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function (){
 
 
 
+//Setores
+    Route::any('/sectors/pesquisar', 'Painel\SectorController@search')->name('sectors.search');
+    Route::resource('/sectors', 'Painel\SectorController');
 
-//    Route::fallback( function (){
-//        return view ('errors.404');
-//    });
+//Idéias
+    Route::any('/ideas/pesquisar', 'Painel\IdeaController@search')->name('ideas.search');
+    Route::any('/ideas/edit-assessor/{id}', 'Painel\IdeaController@editAssessor')->name('ideas.edit-assessor');
+    Route::resource('/ideas', 'Painel\IdeaController');
 
-    Route::get( '404', function (){
-        abort(404);
-    });
 
     //Raiz painel
     Route::get('/', 'Painel\PainelController@index')->name('home');

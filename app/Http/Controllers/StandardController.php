@@ -29,6 +29,8 @@ class StandardController extends BaseController
      */
     public function index()
     {
+
+
         $datas = $this->model->paginate($this->totalPage);
 
         $title = "Listagem {$this->nameSmall}";
@@ -105,6 +107,8 @@ class StandardController extends BaseController
     {
         //Recuperar usuário
         $data = $this->model->find($id);
+
+//        dd($data);
 
         $title = "Visualizar {$this->nameSmall}";
 
@@ -226,5 +230,7 @@ class StandardController extends BaseController
 
         return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
     }
+
+
 
 }

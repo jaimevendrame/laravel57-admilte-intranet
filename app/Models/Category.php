@@ -24,4 +24,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
+
+    public function ideas()
+    {
+        return $this->hasMany('App\Models\Idea');
+    }
 }

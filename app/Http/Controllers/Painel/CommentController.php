@@ -26,7 +26,11 @@ class CommentController extends StandardController
     }
     public function search(Request $request)
     {
-        //Recupera os dados do formulário
+        //Recupera os da
+        //
+        //
+        //
+        //dos do formulário
         $dataForm = $request->except('_token');
 
         $title = "Listagem {$this->nameSmall}s";

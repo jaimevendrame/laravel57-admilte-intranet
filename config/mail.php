@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'contato@sparkcursos.com.br'),
-        'name' => env('MAIL_FROM_NAME', 'Spark'),
+        'address' => env('MAIL_FROM_ADDRESS', 'naoresponder@campomourao.pr.leg.br'),
+        'name' => env('MAIL_FROM_NAME', 'Câmara de Vereadores de Campo Mourão-PR'),
     ],
 
     /*
@@ -119,5 +119,8 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
+
+
 
 ];

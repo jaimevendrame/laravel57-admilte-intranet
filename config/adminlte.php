@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'Cursos e Treinamentos',
+    'title' => 'Sistema de Gestão Legislativa ',
 
-    'title_prefix' => 'SPARK - ',
+    'title_prefix' => 'Cotec-SGL - ',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Spark</b>SYS',
+    'logo' => '<b>Cotec</b>SGL',
 
-    'logo_mini' => '<b>S</b>SYS',
+    'logo_mini' => '<b>C</b>SGL',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,6 +94,8 @@ return [
     'login_url' => 'login',
 
     'register_url' => 'register',
+
+    'register_url_custom' => 'registro',
 
     /*
     |--------------------------------------------------------------------------
@@ -158,6 +160,18 @@ return [
             'url'  => 'painel/permissoes',
             'icon' => 'unlock',
             'can'  => 'Admin',
+        ],
+        [
+            'text' => 'Setores',
+            'url'  => 'painel/sectors',
+            'icon' => 'sitemap',
+            'can'  => 'sectors',
+        ],
+        [
+            'text' => 'Ideias',
+            'url'  => 'painel/ideas',
+            'icon' => 'lightbulb-o',
+            'can'  => 'ideas',
         ],
         'ACCOUNT SETTINGS',
 

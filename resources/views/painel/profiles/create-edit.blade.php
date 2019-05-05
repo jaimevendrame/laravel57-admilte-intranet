@@ -49,11 +49,11 @@
                     <div class="box-body">
                         <div class="form-group col-md-6">
                             <label for="InputName">Nome</label>
-                            <input type="text" class="form-control" id="InputName" name="name" placeholder="Nome" value="{{$data->name or old('name')}}">
+                            <input type="text" class="form-control" id="InputName" name="name" placeholder="Nome" value="{{$data->name ?? old('name')}}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputUrl">Rótulo</label>
-                            <input type="text" class="form-control" id="InputUrl" name="label" placeholder="Rótulo" value="{{$data->label or old('label')}}">
+                            <input type="text" class="form-control" id="InputUrl" name="label" placeholder="Rótulo" value="{{$data->label ?? old('label')}}">
                         </div>
                     </div>
                     <!-- /.box-body -->

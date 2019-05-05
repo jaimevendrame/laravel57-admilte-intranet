@@ -16,14 +16,15 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('image', 200)->nullable();
-            $table->string('facebook', 100)->nullable();
-            $table->string('twitter', 100)->nullable();
-            $table->string('github', 100)->nullable();
-            $table->string('site', 100)->nullable();
-            $table->text('biography')->nullable();
+            $table->string('rg', 14)->nullable();
+            $table->string('cpf', 11)->nullable();
+            $table->date('birth_date')->nullable();
+            $table->enum('sex', ['N', 'M', 'F'])->comment('N-> Não Informado, M-> Masculino, F-> Feminino')->nullable();
+            $table->enum('marital_status', ['0','1','2','3','4','5','6'])->comment('0-> Não Informado, 1-> Solteiro, 2-> Casado, 3-> Desquitado, 4->Viúvo, 5-> União Estável, 6-> Outros')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

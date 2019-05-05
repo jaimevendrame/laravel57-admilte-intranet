@@ -48,16 +48,16 @@
                     <div class="box-body">
                         <div class="form-group col-md-6">
                             <label for="InputName">Nome</label>
-                            <input type="text" class="form-control" id="InputName" name="name" placeholder="Nome" value="{{$data->name or old('name')}}">
+                            <input type="text" class="form-control" id="InputName" name="name" placeholder="Nome" value="{{$data->name ?? old('name')}}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputUrl">URL</label>
-                            <input type="text" class="form-control" id="InputUrl" name="url" placeholder="Url" value="{{$data->url or old('url')}}">
+                            <input type="text" class="form-control" id="InputUrl" name="url" placeholder="Url" value="{{$data->url ?? old('url')}}">
                         </div>
                         <!-- textarea -->
                         <div class="form-group col-md-12">
                             <label>Descrição</label>
-                            <textarea class="form-control" rows="3" name="description" placeholder="Digite aqui ...">{{$data->description or old('description')}}</textarea>
+                            <textarea class="form-control" rows="3" name="description" placeholder="Digite aqui ...">{{$data->description ?? old('description')}}</textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputFile">Imagem da categoria</label>

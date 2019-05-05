@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use App\Http\Controllers\StandardController;
 use App\Http\Requests\Painel\UserFormRequest;
 use App\Models\Profile;
+use App\Models\Sector;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -49,25 +50,33 @@ class UserController extends StandardController
 
         $title = "Cadastrar {$this->nameSmall}";
 
-        return view("{$this->view}.create-edit", compact('data', 'title'));
+        $sectories = Sector::get();
+
+        return view("{$this->view}.create-edit", compact('data', 'title', 'sectories'));
     }
     public function store(Request $request)
     {
 
         $this->authorize('can:users');
 
+        //Remover mascara cpf
+        $chars = array(".","-");
+        $request['cpf']= str_replace($chars,"", $request['cpf']);
+
         //valida os dados
         $this->validate($request, $this->model->rules());
         //pegar todos dados do formulário
         $dataForm = $request->all();
 
+
+
         //Criptografar a senha
         $dataForm['password'] = bcrypt($dataForm['password']);
 
         //Verificar se existe a imagem
-        if ( $this->upload && $request->hasFile($this->upload['image'])){
+        if ( $this->upload && $request->hasFile($this->upload['name'])){
             //pegar a imagem
-            $image = $request->file($this->upload['image']);
+            $image = $request->file($this->upload['name']);
 
             //Definir no nome da imagem
             $nameFile = uniqid(date('YmdHis')).'.'.$image->getClientOriginalExtension();
@@ -75,7 +84,7 @@ class UserController extends StandardController
             $upload = $image->storeAs($this->upload['path'], $nameFile);
 
             if ( $upload )
-                $dataForm[$this->upload['image']] = $nameFile;
+                $dataForm[$this->upload['name']] = $nameFile;
             else
                 return redirect()
                     ->route("{$this->route}.create")
@@ -122,7 +131,10 @@ class UserController extends StandardController
 
         $title = "Editar {$this->nameSmall}s";
 
-        return view("{$this->view}.create-edit", compact('data', 'title'));
+        $sectories = Sector::get();
+
+
+        return view("{$this->view}.create-edit", compact('data', 'title', 'sectories'));
     }
 
     public function update(Request $request, $id)
@@ -130,27 +142,42 @@ class UserController extends StandardController
 
         $this->authorize('can:users');
 
+        //Remover mascara cpf
+        $chars = array(".","-");
+        $request['cpf']= str_replace($chars,"", $request['cpf']);
+
+//        dd($request)->all();
+
+        //Criar objeto usuario
+        $data = $this->model->find($id);
+
+        //Validar password
+        if($request['password'] == null){
+
+            $request['password'] = $data->password;
+
+        } else {
+            //Criptografar a senha
+            $request['password'] = bcrypt($request['password']);
+        }
+
         //valida dados
-        $this->validate($request, $this->model->rulesEdit($id));
+        $this->validate($request, $this->model->rules($id));
 
         $dataForm = $request->all();
 
 
-        //Criar objeto categorias
-        $data = $this->model->find($id);
-
-
         //Verificar se existe a imagem
-        if ( $this->upload && $request->hasFile($this->upload['image'])){
+        if ( $this->upload && $request->hasFile($this->upload['name'])){
             //pegar a imagem
-            $image = $request->file($this->upload['image']);
+            $image = $request->file($this->upload['name']);
 
 //            dd($image);
 
             //Definir no nome da imagem
             if ($data->image == ''){
                 $nameImage = uniqid(date('YmdHis')).'.'.$image->getClientOriginalExtension();
-                $dataForm[$this->upload['image']] = $nameImage;
+                $dataForm[$this->upload['name']] = $nameImage;
             } else {
                 $nameImage = $data->image;
             }
@@ -159,7 +186,7 @@ class UserController extends StandardController
 
 
             if ($upload )
-                $dataForm[$this->upload['image']] = $nameImage;
+                $dataForm[$this->upload['name']] = $nameImage;
 
             else
                 return redirect()
@@ -202,18 +229,32 @@ class UserController extends StandardController
 
         $id = auth()->user()->id;
 
-
-        //valida dados
-        $this->validate($request, $this->model->rulesEdit($id));
-
-        $dataForm = $request->all();
-
-
-        //Criptografar a senha
-        $dataForm['password'] = bcrypt($dataForm['password']);
+        //Remover mascara cpf
+        $chars = array(".","-");
+        $request['cpf']= str_replace($chars,"", $request['cpf']);
 
         //Criar objeto categorias
         $data = $this->model->find($id);
+
+
+        //Validar password
+        if($request['password'] == null){
+
+            $request['password'] = $data->password;
+
+        } else {
+            //Criptografar a senha
+            $request['password'] = bcrypt($request['password']);
+        }
+
+        $request['email'] = $data->email;
+        $request['sector_id'] = 1;
+
+
+        //valida dados
+        $this->validate($request, $this->model->rules($id));
+
+        $dataForm = $request->all();
 
 
 
@@ -349,5 +390,69 @@ class UserController extends StandardController
         return view('painel.users.profiles', compact('user', 'dataForm', 'profiles', 'title'));
 
     }
+
+    public function register(Request $request)
+    {
+
+        //Converte data DD/MM/YYY para YYYY-MM-DD
+        $origDate = $request['birth_date'];
+
+        $date = str_replace('/', '-', $origDate );
+        $newDate = date("Y-m-d", strtotime($date));
+
+        $request['birth_date'] = $newDate;
+
+
+
+        //Remover mascara cpf
+        $chars = array(".","-");
+        $request['cpf']= str_replace($chars,"", $request['cpf']);
+
+        //valida os dados
+        $this->validate($request, $this->model->rulesCustom());
+        //pegar todos dados do formulário
+        $dataForm = $request->all();
+
+
+
+        //Criptografar a senha
+        $dataForm['password'] = bcrypt($dataForm['password']);
+
+        //Verificar se existe a imagem
+        if ( $this->upload && $request->hasFile($this->upload['name'])){
+            //pegar a imagem
+            $image = $request->file($this->upload['name']);
+
+            //Definir no nome da imagem
+            $nameFile = uniqid(date('YmdHis')).'.'.$image->getClientOriginalExtension();
+
+            $upload = $image->storeAs($this->upload['path'], $nameFile);
+
+            if ( $upload )
+                $dataForm[$this->upload['name']] = $nameFile;
+            else
+                return redirect()
+                    ->route("registro")
+                    ->withErrors(['image' => 'Erro no upload da imagem'])
+                    ->withInput();
+        }
+
+
+        //inserir os dados
+        $insert = $this->model->create($dataForm);
+
+        if($insert)
+            return redirect()
+                ->route("{$this->route}.index")
+                ->with(['success'=>'Cadastro realizado com sucesso!']);
+        else
+            return redirect()
+                ->route("{$this->route}.create")
+                ->withErrors(['errors' => 'Falha ao cadastrar'])
+                ->withInput();
+
+    }
+
+
 }
 

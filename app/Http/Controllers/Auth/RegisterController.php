@@ -29,6 +29,8 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/painel';
 
+
+
     /**
      * Create a new controller instance.
      *
@@ -48,9 +50,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'          => 'required|string|max:255',
+            'last_name'     => 'required|min:3|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'password'      => 'required|string|min:6|confirmed',
+            'rg'            => 'required|max:14',
+            'cpf'           => "required|cpf|unique:users",
+            'birth_date'    => 'required|date',
+            'sex'           => 'required',
+            'marital_status'=> 'required',
+//            'image'         => 'image|max:2048',
+
         ]);
     }
 
@@ -62,10 +72,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//
+
+
         return User::create([
             'name' => $data['name'],
+            'name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'rg' => $data['rg'],
+            'cpf' => $data['cpf'],
+            'birth_date' => $data['birth_date'],
+            'sex' => $data['sex'],
+            'marital_status' => $data['marital_status'],
+
         ]);
     }
+
+
+
 }

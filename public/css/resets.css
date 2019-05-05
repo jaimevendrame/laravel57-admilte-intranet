@@ -1,0 +1,8 @@
+login-box, .register-box {
+    width: 90% !important;
+    margin: 3% auto !important;
+}
+
+.login-box-body, .register-box-body {
+    padding: 10px !important;
+}

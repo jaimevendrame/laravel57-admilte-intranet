@@ -100,9 +100,10 @@ return [
     */
 
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'birth_date' => [
+            'required' => 'O campo Data de Nascimento é obrigatório.',
         ],
+
     ],
 
     /*

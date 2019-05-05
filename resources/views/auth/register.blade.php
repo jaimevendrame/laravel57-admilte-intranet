@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nome</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -20,6 +20,20 @@
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                            <label for="last_name" class="col-md-4 control-label">Sobrenome</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+                                @if ($errors->has('last_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -75,3 +89,21 @@
     </div>
 </div>
 @endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('.cpf').mask('000.000.000-00');
+            $('#InputBirth').mask('00/00/0000');
+            //Date picker
+            $('#InputBirth').datepicker({
+                autoclose: true,
+                format: "dd/mm/yyyy",
+                todayHyghlight: true
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{{url('assets/js/jquery.mask.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/js/bootstrap-datepicker.min.js')}}"></script>
+
+
+@stop

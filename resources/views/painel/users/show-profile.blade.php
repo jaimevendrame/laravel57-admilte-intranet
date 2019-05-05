@@ -53,13 +53,14 @@
 
                         <div class="col-md-8">
 
-                            <h4><strong>Nome: </strong>{{$data->name}}</h4>
+                            <h4><strong>Nome: </strong>{{$data->name." ".$data->last_name}}</h4>
                             <h4><strong>Email: </strong>{{$data->email}}</h4>
-                            <h4><strong>Facebook: </strong>{{$data->facebook}}</h4>
-                            <h4><strong>Twitter: </strong>{{$data->twitter}}</h4>
-                            <h4><strong>GitHun: </strong>{{$data->github}}</h4>
-                            <h4><strong>Site: </strong>{{$data->site}}</h4>
-                            <h4><strong>Biográfia: </strong>{{$data->biography}}</h4>
+                            <h4><strong>RG: </strong>{{$data->rg}}</h4>
+                            <h4><strong>CPF: </strong>{{$data->cpf}}</h4>
+                            <h4><strong>Data de Nascimento: </strong>{{$data->birth_date}}</h4>
+                            <h4><strong>Sexo: </strong>{{$data->sex}}</h4>
+                            <h4><strong>Estado Civil: </strong>{{$data->marital_status}}</h4>
+                            <h4><strong>Setor: </strong>{{$data->sectorid->initials}} - {{$data->sectorid->name}}</h4>
                         </div>
                     </div>
                 </div>

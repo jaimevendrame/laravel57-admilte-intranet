@@ -82,14 +82,18 @@
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                @if( auth()->user()->image != '' && file_exists(public_path('assets/uploads/users/'. auth()->user()->image)))
+                                @if(Auth::check())
+{{--                                    {{ Auth::user()->name }}--}}
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    @if( auth()->user()->image != '' && file_exists(public_path('assets/uploads/users/'. auth()->user()->image)))
                                     <img src="{{URL::asset('/assets/uploads/users/'. auth()->user()->image)}}" alt="{{ auth()->user()->name}}" class="user-image img-circle img-responsive">
-                                        {{auth()->user()->name}} <span class="caret"></span></a>
-                                @else
+                                    {{auth()->user()->name}} <span class="caret"></span></a>
+                                    @else
                                     <img src="{{URL::asset('/assets/uploads/users/no-image.png')}}" alt="{{ auth()->user()->name}}" class="user-image img-circle img-responsive">
-                                        {{auth()->user()->name}} <span class="caret"></span></a>
+                                    {{auth()->user()->name}} <span class="caret"></span></a>
+                                    @endif
                                 @endif
+
 
                             <ul class="dropdown-menu user-body">
                                 <li><a href="{{route('profile.show')}}">Perfil</a></li>

@@ -45,11 +45,11 @@
                     <div class="box-body">
                         <div class="form-group col-md-12">
                             <label for="InputTitle">Título</label>
-                            <input type="text" class="form-control" id="InputTitle" name="title" placeholder="Título" value="{{$data->title or old('title')}}">
+                            <input type="text" class="form-control" id="InputTitle" name="title" placeholder="Título" value="{{$data->title ?? old('title')}}">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="InputUrl">Url</label>
-                            <input type="text" class="form-control" id="InputUrl" name="url" placeholder="Url" value="{{$data->url or old('url')}}">
+                            <input type="text" class="form-control" id="InputUrl" name="url" placeholder="Url" value="{{$data->url ?? old('url')}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Selecione um categoria</label>
@@ -67,31 +67,31 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="Inputdata">Data</label>
-                            <input type="date" class="form-control date-picker" id="Inputdata" name="date"  value="{{$data->date or old('date')}}">
+                            <input type="date" class="form-control date-picker" id="Inputdata" name="date"  value="{{$data->date ?? old('date')}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="Inputhour">Horário</label>
-                            <input type="time" class="form-control bootstrap-timepicker timepicker" name="hour" id="Inputhour"  value="{{$data->hour or old('hour')}}">
+                            <input type="time" class="form-control bootstrap-timepicker timepicker" name="hour" id="Inputhour"  value="{{$data->hour ?? old('hour')}}">
                         </div>
 
                         <!-- textarea -->
                         <div class="form-group col-md-12">
                             <label>Introdução</label>
-                            <textarea class="form-control" rows="5" name="description" id="description" placeholder="Digite aqui ...">{{$data->description or old('description')}}</textarea>
+                            <textarea class="form-control" rows="5" name="description" id="description" placeholder="Digite aqui ...">{{$data->description ?? old('description')}}</textarea>
                         </div>
                         <!-- textarea -->
                         <div class="form-group col-md-12">
                             <label>Texto de Chamada</label>
-                            <textarea class="form-control" rows="3" name="calltext" id="calltext" placeholder="Digite aqui ...">{{$data->calltext or old('calltext')}}</textarea>
+                            <textarea class="form-control" rows="3" name="calltext" id="calltext" placeholder="Digite aqui ...">{{$data->calltext ?? old('calltext')}}</textarea>
                         </div>
                         <!-- textarea -->
                         <div class="form-group col-md-12">
                             <label>Texto artigo</label>
-                            <textarea class="form-control" rows="5" name="descriptionfull" id="descriptionfull" placeholder="Digite aqui ...">{{$data->descriptionfull or old('descriptionfull')}}</textarea>
+                            <textarea class="form-control" rows="5" name="descriptionfull" id="descriptionfull" placeholder="Digite aqui ...">{{$data->descriptionfull ?? old('descriptionfull')}}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <label for="InputTags">Tags do seu artigo</label>
-                            <input type="text" class="form-control" id="tags" name="tags" placeholder="tags" value="{{$data->tags or old('tags')}}">
+                            <input type="text" class="form-control" id="tags" name="tags" placeholder="tags" value="{{$data->tags ?? old('tags')}}">
                         </div>
                         <div class="form-group col-md-12">
                             <div class="checkbox">
