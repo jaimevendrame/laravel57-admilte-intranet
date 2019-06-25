@@ -119,7 +119,7 @@ class IdeaPublicController extends StandardController
         $data = $this->model->find($id);
 
         //Permissao para edicao
-        $this->authorize('owner', $data);
+        $this->authorize('owner', $data); 
 
         $title = "Editar {$this->nameSmall}s";
 
