@@ -16,7 +16,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('ideas.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVA IDEIA</a>
+                <a href="{{route('ideas.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA IDEIA</a>
             </h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{url('painel/ideas/pesquisar')}}" enctype="multipart/form-data">

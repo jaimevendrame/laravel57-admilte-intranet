@@ -34,6 +34,8 @@ return [
 
     'logo_mini' => '<b>C</b>SGL',
 
+    'alternartivo_nome' => '<b>Câmara Municipal de Campo Mourão - PR</b>',
+
     /*
     |--------------------------------------------------------------------------
     | Skin Color
@@ -110,20 +112,7 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
-        [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        'ADMINISTRAÇÃO',
+        'MENU DE NAVEGAÇÃO',
         [
             'text' => 'Usuários',
             'url'  => 'painel/usuarios',
@@ -173,69 +162,37 @@ return [
             'icon' => 'lightbulb-o',
             'can'  => 'ideas',
         ],
-        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Parlamentar',
+            'url'  => 'painel/parlamentares',
+            'icon' => 'user-secret',
+            'can'  => 'parlamentars',
+        ],
+        [
+            'text' => 'Súmulas',
+            'url'  => 'painel/sumulas',
+            'icon' => 'file-text',
+            'can'  => 'sumulas',
+        ],
+        'CONFIGURAÇÕES DA CONTA',
 
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'Perfil',
+            'url'  => 'painel/profile',
             'icon' => 'user',
         ],
         [
-            'text' => 'Change Password',
+            'text' => 'Alterar Senha',
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
         [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => '',
+            'url'  => '',
+            'icon' => '',
+            'can'  => 'view_painel',
         ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
-        ],
+
     ],
 
     /*

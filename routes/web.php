@@ -51,6 +51,13 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Auth::routes(['verify' => true]);
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', function () {
+    return view('welcome');
+})->name('home');
+
+
+Route::get('/mail', 'Site\SiteController@sendMail');
 Route::get('/create-lead', 'Site\SiteController@create')->name('site.create');
 Route::post('/comment-post', 'Site\SiteController@commentPost')->name('comment');
 Route::get('/contato', 'Site\SiteController@contato')->name('contato');
@@ -130,9 +137,30 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], funct
     Route::any('/ideas/edit-assessor/{id}', 'Painel\IdeaController@editAssessor')->name('ideas.edit-assessor');
     Route::resource('/ideas', 'Painel\IdeaController');
 
+    /* Área de acesso do cidadão;
+     * */
+    Route::any('/ideas-public/pesquisar', 'Painel\IdeaPublicController@search')->name('ideas-public.search');
+    Route::resource('/ideas-public', 'Painel\IdeaPublicController');
+
+
+
+//Parlamentetares
+    Route::any('/parlamentares/pesquisar', 'Painel\ParlamentarController@search')->name('parlamentar.search');
+    Route::resource('/parlamentares', 'Painel\ParlamentarController');
+
+
+//Súmulas
+    Route::any('/sumulas/pesquisar', 'Painel\SumulaController@search')->name('sumula.search');
+    Route::resource('/sumulas', 'Painel\SumulaController');
+
+
+
 
     //Raiz painel
-    Route::get('/', 'Painel\PainelController@index')->name('home');
+    Route::get('/', 'Painel\PainelController@index')->name('home.painel');
+
+
+
 });
 
 

@@ -16,7 +16,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('perfis.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVO PERFIL</a>
+                <a href="{{route('perfis.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVO PERFIL</a>
             </h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{url('painel/perfis/pesquisar')}}" enctype="multipart/form-data">

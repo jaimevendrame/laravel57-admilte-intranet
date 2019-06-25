@@ -94,7 +94,6 @@
                                     @endif
                                 @endif
 
-
                             <ul class="dropdown-menu user-body">
                                 <li><a href="{{route('profile.show')}}">Perfil</a></li>
                                 <li><a href="#">Another action</a></li>

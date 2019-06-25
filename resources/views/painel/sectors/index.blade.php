@@ -16,7 +16,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('sectors.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVA SETOR</a>
+                <a href="{{route('sectors.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA SETOR</a>
             </h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{url('painel/sectors/pesquisar')}}" enctype="multipart/form-data">

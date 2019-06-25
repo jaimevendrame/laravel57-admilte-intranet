@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -21,6 +22,8 @@ class StandardController extends BaseController
 
     protected $totalPage = 15;
     protected $upload = false;
+
+    
 
     /**
      * Display a listing of the resource.
@@ -149,13 +152,12 @@ class StandardController extends BaseController
         //Criar objeto categorias
         $data = $this->model->find($id);
 
-
         //Verificar se existe a imagem
+
         if ( $this->upload && $request->hasFile($this->upload['image'])){
             //pegar a imagem
             $image = $request->file($this->upload['image']);
 
-//            dd($image);
 
             //Definir no nome da imagem
             if ($data->image == ''){
@@ -163,6 +165,7 @@ class StandardController extends BaseController
                 $dataForm[$this->upload['image']] = $nameImage;
             } else {
                 $nameImage = $data->image;
+
             }
 
             $upload = $image->storeAs($this->upload['path'], $nameImage);
@@ -202,6 +205,7 @@ class StandardController extends BaseController
      */
     public function destroy($id)
     {
+
         $data = $this->model->find($id);
         $delete = $data->delete();
 
@@ -230,6 +234,21 @@ class StandardController extends BaseController
 
         return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
     }
+
+    public function find(Request $request)
+    {
+        $term = trim($request->q);
+        if (empty($term)) {
+            return response()->json([]);
+        }
+        $tags = User::search($term)->limit(5)->get();
+        $formatted_tags = [];
+        foreach ($tags as $tag) {
+            $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->name];
+        }
+        return response()->json($formatted_tags);
+    }
+
 
 
 

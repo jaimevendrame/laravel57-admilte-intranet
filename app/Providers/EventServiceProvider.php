@@ -29,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
             SendMailCommentAnswered::class,
             ChangeStatusCommentAnswered::class,
         ],
+        'Illuminate\Auth\Events\Verified' => [
+            'App\Listeners\LogVerifiedUser',
+        ],
 
     ];
 

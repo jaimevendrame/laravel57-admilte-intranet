@@ -3,15 +3,22 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendRotinaSumulas;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Sumula;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendContact;
+
+
+
 class SiteController extends Controller
 {
+
     private $post;
     private $category;
     private $user;
@@ -150,6 +157,7 @@ class SiteController extends Controller
 
     }
 
+
     public function search(Request $request)
     {
 
@@ -228,6 +236,72 @@ class SiteController extends Controller
                 ->route("site.create")
                 ->withErrors(['errors' => 'Falha ao cadastrar'])
                 ->withInput();
+    }
+
+
+    public function sendMail()
+    {
+
+        foreach ($this->rerturnParlamentaresSumulas() as $parlamentar) {
+
+            echo 'Parlamentar ID: '.$parlamentar->parlamentar_id."<br/>";
+            echo 'Email: '.$parlamentar->email."<br/>";
+
+            $data = $this->returnSumulasParlamentares($parlamentar->parlamentar_id);
+
+
+            Mail::to($parlamentar->email)->send(new SendRotinaSumulas($data));
+
+            foreach ($this->returnSumulasParlamentares($parlamentar->parlamentar_id) as $sumula) {
+
+                echo 'Nr protocolo: '.$sumula->nr_protocolo."<br/>";
+                echo 'Nome Parlamentar: '.$sumula->nome_parlamentar."<br/>";
+                echo 'Partido: '.$sumula->sigla_partido."-".$sumula->nome_partido."<br/>";
+                echo 'Data Pro: '.$sumula->date_protocolo."<br/>";
+                echo 'Hora Pro: '.$sumula->hour_protocolo."<br/>";
+                echo 'Hora Pro: '.$sumula->email."<br/>";
+                echo 'Descrição: '.$sumula->description."<br/><br/><br/>";
+            }
+
+        }
+
+
+
+
+    }
+
+
+    public function rerturnParlamentaresSumulas()
+    {
+        $data = DB::table('sumulas')
+            ->select('sumulas.parlamentar_id','users.email')
+            ->join('parlamentars', 'sumulas.parlamentar_id', '=', 'parlamentars.id')
+            ->join('users', 'parlamentars.user_id', '=', 'users.id')
+            ->where([
+                ['sumulas.date_start', '!=', null],
+                ['sumulas.status', '=', 'A']
+            ])
+            ->groupBy('sumulas.parlamentar_id')
+            ->get();
+
+
+        return $data;
+    }
+
+    public function returnSumulasParlamentares($parlamentar)
+    {
+        $data = DB::table('sumulas')
+            ->join('parlamentars', 'sumulas.parlamentar_id', '=', 'parlamentars.id')
+            ->join( 'users', 'parlamentars.user_id', '=', 'users.id')
+            ->where([
+                ['sumulas.date_start', '!=', null],
+                ['sumulas.status', '=', 'A'],
+                ['sumulas.parlamentar_id', '=', $parlamentar]
+            ])
+            ->orderBy('sumulas.date_start', 'ASC')
+            ->get();
+
+        return $data;
     }
 
 }

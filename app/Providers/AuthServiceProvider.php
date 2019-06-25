@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Idea;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Permission;
@@ -40,11 +41,21 @@ class AuthServiceProvider extends ServiceProvider
             });
 
 
+
+            Gate::define('update_idea', function (User $user, $id){
+
+                return $user->id == $id;
+            });
+
+
+
             //Recuperar todas permissions
             $permissions = Permission::all();
             foreach ( $permissions as $permission ) {
+
                 Gate::define($permission->name, function (User $user) use ($permission) {
                         return $user->hasPermission($permission);
+
                 });
             }
 

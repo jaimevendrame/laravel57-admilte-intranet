@@ -17,7 +17,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('profile.users.add', $profile->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Usuários</a>
+                <a href="{{route('profile.users.add', $profile->id)}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> Usuários</a>
             </h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{route('profile.users.search', $profile->id)}}" enctype="multipart/form-data">

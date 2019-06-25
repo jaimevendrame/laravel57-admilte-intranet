@@ -5,12 +5,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Dashboard</h1><small><span>Painel de Controle</span></small>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.???</p>
+    <p>Bem ao seu Painel de Controle.</p>
     <div class="row">
+        @can('users')
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <!-- Apply any bg-* class to to the icon to color it -->
@@ -23,7 +24,8 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('categories')
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <!-- Apply any bg-* class to to the icon to color it -->
@@ -36,7 +38,9 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
 
+        @can('posts')
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <!-- Apply any bg-* class to to the icon to color it -->
@@ -49,7 +53,8 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('comments')
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <!-- Apply any bg-* class to to the icon to color it -->
@@ -62,7 +67,8 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('Admin')
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <!-- Apply any bg-* class to to the icon to color it -->
@@ -75,6 +81,8 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
+        @can('Admin')
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <!-- Apply any bg-* class to to the icon to color it -->
@@ -87,7 +95,49 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('Admin')
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <!-- Apply any bg-* class to to the icon to color it -->
+                    <span class="info-box-icon bg-maroon"><i class="fa fa-unlock"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Setores</span>
+                        <span class="info-box-number">{{$totalPermissions}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        @endcan
+        @can('sumulas')
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <!-- Apply any bg-* class to to the icon to color it -->
+                    <span class="info-box-icon bg-orange"><i class="fa fa-file-text"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Súmulas</span>
+                        <span class="info-box-number">{{$totalSumulas}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        @endcan
+            @can('ideas')
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <!-- Apply any bg-* class to to the icon to color it -->
+                        <span class="info-box-icon bg-blue-active"><i class="fa fa-lightbulb-o"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Ideias</span>
+                            <span class="info-box-number">{{$totalIdeas}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            @endcan
     </div>
 
 @stop

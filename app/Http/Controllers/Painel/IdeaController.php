@@ -26,9 +26,22 @@ class IdeaController extends StandardController
 
     }
 
+    public function index()
+    {
+
+
+        $datas = $this->model->paginate($this->totalPage);
+
+        $title = "Listagem {$this->nameSmall}";
+
+        return view("{$this->view}.index", compact('datas', 'title'));
+    }
+
 
     public function create()
     {
+
+
         $title = "Cadastrar {$this->nameSmall}";
 
         $categories = Category::get();
@@ -97,6 +110,7 @@ class IdeaController extends StandardController
 
     public function edit($id)
     {
+
         //Recuperar usuário pelo id
         $data = $this->model->find($id);
 
@@ -110,6 +124,7 @@ class IdeaController extends StandardController
 
     public function update(Request $request, $id)
     {
+
         //valida dados
 
         if(!Auth::user()->can('view_ideas'))
@@ -192,6 +207,7 @@ class IdeaController extends StandardController
 
     public function show($id)
     {
+
         //Recuperar usuário
         $data = $this->model->find($id);
 //        dd($data->assessor_id);
@@ -206,6 +222,7 @@ class IdeaController extends StandardController
 
     public function editAssessor($id)
     {
+
         //Recuperar usuário pelo id
         $data = $this->model->find($id);
 
@@ -217,5 +234,13 @@ class IdeaController extends StandardController
 
         return view("{$this->view}.create-edit-assessor", compact('data', 'title', 'categories', 'sectories'));
     }
+
+
+    /* Área para acesso do cidadão;
+     *
+     * */
+
+
+
 
 }

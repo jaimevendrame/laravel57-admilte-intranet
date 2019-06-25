@@ -17,7 +17,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('permission.profiles.add', $permission->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Cadastrar</a>
+                <a href="{{route('permission.profiles.add', $permission->id)}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> Perfil</a>
             </h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{route('permission.profiles.search', $permission->id)}}" enctype="multipart/form-data">

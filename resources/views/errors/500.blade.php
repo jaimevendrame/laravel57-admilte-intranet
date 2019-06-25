@@ -4,9 +4,6 @@
 
 @section('title', 'Dashboard')
 
-@section('content_header')
-    <h1>500 Página com erro</h1>
-@stop
 
 @section('content')
 

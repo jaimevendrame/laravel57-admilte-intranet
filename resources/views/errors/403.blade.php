@@ -1,12 +1,8 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
 
-@extends('adminlte::page')
+@extends('adminlte::page-no-sidebar')
 
 @section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>403 Acesso Negado</h1>
-@stop
 
 @section('content')
 
@@ -21,7 +17,7 @@
             Oops! Acesso Negado para este conteúdo.
         </h3>
         <p>
-           Você não tem permissão para acessar este conteúdo. </br> <a href="javascript:history.back()">Voltar</a>
+           Você não tem permissão para acessar este conteúdo. </br> <a href="{{route('home')}}">Começar de novo :-)</a>
 
         </p>
     </div>

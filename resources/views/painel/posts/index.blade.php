@@ -16,7 +16,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('posts.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVO POST</a>
+                <a href="{{route('posts.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVO POST</a>
             </h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{url('painel/posts/pesquisar')}}" enctype="multipart/form-data">
@@ -48,6 +48,7 @@
                     <th width="150">Ações</th>
                 </tr>
                 @forelse($datas as $data)
+                    @if(Auth::user()->can('owner', $data))
                     <tr>
                         <td>{{$data->title}}</td>
                         <td>
@@ -55,6 +56,7 @@
                             <a href="{{route('posts.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
+                    @endif
                     @empty
                     <div class="box-body">
                         Nenhum postsgem cadastrada

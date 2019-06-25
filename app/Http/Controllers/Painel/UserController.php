@@ -57,6 +57,7 @@ class UserController extends StandardController
     public function store(Request $request)
     {
 
+
         $this->authorize('can:users');
 
         //Remover mascara cpf
@@ -140,13 +141,15 @@ class UserController extends StandardController
     public function update(Request $request, $id)
     {
 
+//        dd($request->all());
+
+
         $this->authorize('can:users');
 
         //Remover mascara cpf
         $chars = array(".","-");
         $request['cpf']= str_replace($chars,"", $request['cpf']);
 
-//        dd($request)->all();
 
         //Criar objeto usuario
         $data = $this->model->find($id);
@@ -161,11 +164,14 @@ class UserController extends StandardController
             $request['password'] = bcrypt($request['password']);
         }
 
+
+
         //valida dados
         $this->validate($request, $this->model->rules($id));
 
         $dataForm = $request->all();
 
+//        dd($dataForm);
 
         //Verificar se existe a imagem
         if ( $this->upload && $request->hasFile($this->upload['name'])){
@@ -408,11 +414,16 @@ class UserController extends StandardController
         $chars = array(".","-");
         $request['cpf']= str_replace($chars,"", $request['cpf']);
 
+
+//                dd($request->all());
+
         //valida os dados
         $this->validate($request, $this->model->rulesCustom());
         //pegar todos dados do formulário
         $dataForm = $request->all();
 
+
+//        dd($dataForm);
 
 
         //Criptografar a senha
@@ -446,6 +457,7 @@ class UserController extends StandardController
                 ->route("{$this->route}.index")
                 ->with(['success'=>'Cadastro realizado com sucesso!']);
         else
+            dd("error");
             return redirect()
                 ->route("{$this->route}.create")
                 ->withErrors(['errors' => 'Falha ao cadastrar'])

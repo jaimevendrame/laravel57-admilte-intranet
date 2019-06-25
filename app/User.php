@@ -62,6 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'birth_date'    => 'required|date',
             'sex'           => 'required',
             'marital_status'=> 'required',
+//            'sector_id'     => 'required',
             'image'         => 'image|max:2048',
         ];
     }
@@ -96,6 +97,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Sector::class, 'sector_id');
     }
+
+
 
 
 }

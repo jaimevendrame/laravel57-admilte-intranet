@@ -41,8 +41,7 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <h4><strong>Nome: </strong>{{$data->name}}</h4>
-                            <h4><strong>Sobrenome: </strong>{{$data->last_name}}</h4>
+                            <h4><strong>Nome completo: </strong>{{$data->name. " " .$data->last_name}}</h4>
                             <h4><strong>Email: </strong>{{$data->email}}</h4>
                             <h4><strong>RG: </strong>{{$data->rg}}</h4>
                             <h4><strong>CPF: </strong>{{$data->cpf}}</h4>

@@ -1,0 +1,135 @@
+@extends('adminlte::page')
+
+@section('title', 'Gestão de súmulas')
+
+@section('content_header')
+    <h1>Gestão de súmulas <small>{{$title}}</small></h1>
+
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li><a href="#">Súmulas</a></li>
+
+    </ol>
+@stop
+
+@section('content')
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">
+                <a href="{{route('sumulas.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA SÚMULA</a>
+            </h3>
+            <div class="box-tools">
+                <form role="form" method="get" action="{{url('painel/sumulas/pesquisar')}}" enctype="multipart/form-data">
+                    {{--{{ csrf_field() }}--}}
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            @if( Session::has('success'))
+                <div class="col-md-12">
+                    <div class="alert alert-success alert-dismissible hide-msg">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i> {{Session::get('success')}}</h4>
+
+                    </div>
+                </div>
+            @endif
+            <table class="table table-hover">
+                <tr>
+                    <th>Nº Protocolo</th>
+                    <th>Data/Hora </th>
+                    <th>Autor</th>
+                    <th>Data início</th>
+                    <th>Data fim</th>
+                    <th>Expira em</th>
+                    <th>Status</th>
+                    <th width="150">Ações</th>
+                </tr>
+                @forelse($datas as $data)
+                    <tr>
+                        <td>{{$data->nr_protocolo}}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('d/m/Y'). " - " . \Carbon\Carbon::parse($data->hour_protocolo)->format('H:i') }}</td>
+                        <td>{{$data->parlamentar->nome_parlamentar}}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->date_start)->format('d/m/Y') }}</td>
+
+                        <td>
+                            @php
+                                if (($data->date_start != "")) {
+                                $data_end = date('Y-m-d', strtotime('+90 days', strtotime($data->date_start)));
+
+                                echo \Carbon\Carbon::parse($data_end)->format('d/m/Y'); }
+                            @endphp
+                        </td>
+                        <td>
+                            @php
+                                if (($data->date_start != "")) {
+                                    $data1 = new DateTime( $data->date_start );
+                                    $data2 = new DateTime( $data_end );
+                                    $data_atual = new DateTime( \Carbon\Carbon::now()->format('Y-m-d') );
+
+                                    $prazo = $data2->diff( $data_atual )->format("%a");
+
+
+
+                                    if ($data2 < $data_atual)
+                                    {
+
+
+                                     echo "VENCIDA";;
+
+
+                                    } else {
+
+                                     echo $prazo." dias";
+                                    }
+
+
+                                } else { echo "---"; }
+
+                            @endphp
+
+
+                        </td>
+
+                        <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
+
+
+                        <td>
+                            <a href='{{route('sumulas.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+                            <a href="{{route('sumulas.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
+                        </td>
+                    </tr>
+                    @empty
+                    <div class="box-body">
+                        Nenhuma súmula cadastrada
+                    </div>
+                    @endforelse
+            </table>
+            <div class="box-footer">
+                @if(isset($dataForm))
+                    {{$datas->appends(Request::only('pesquisa'))->links()}}
+                @else
+                    {{$datas->links()}}
+                @endif
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+@stop
+@section('js')
+    <script>
+    $(function () {
+        setTimeout("$('.hide-msg').fadeOut();", 3000)
+    })
+    </script>
+@stop

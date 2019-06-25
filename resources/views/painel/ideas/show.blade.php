@@ -85,8 +85,8 @@
                                         </li>
 {{--                                            @if(isset($data->user->sector->initials))--}}
                                                 <li><h5><strong>Setor: </strong></h5>
-{{--                                                    <p>{{$data->user->sector->initials}}</p>--}}
-                                                    <p>{{$data->user->sectorid->initials}}</p>
+                                                    <p>{{$data->user->sector->initials}}</p>
+{{--                                                    <p>{{$data->user->sectorid->initials}}</p>--}}
                                                 </li>
                                             {{--@endif--}}
                                         @endif

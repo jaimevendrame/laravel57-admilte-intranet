@@ -14,7 +14,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title"><a href="{{route('usuarios.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVO USUÁRIO</a></h3>
+            <h3 class="box-title"><a href="{{route('usuarios.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVO USUÁRIO</a></h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{url('painel')}}" enctype="multipart/form-data">
                     {{--{{ csrf_field() }}--}}
@@ -50,7 +50,7 @@
                 </tr>
                 @forelse($datas as $data)
                     <tr>
-                        <td>{{$data->name}}</td>
+                        <td>{{$data->name. " " .$data->last_name}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->facebook}}</td>
                         <td>{{$data->twitter}}</td>

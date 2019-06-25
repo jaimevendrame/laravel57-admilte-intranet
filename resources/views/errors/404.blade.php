@@ -1,12 +1,8 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
 
-@extends('adminlte::page')
+@extends('adminlte::page-no-sidebar')
 
 @section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>404 Error Page</h1>
-@stop
 
 @section('content')
 

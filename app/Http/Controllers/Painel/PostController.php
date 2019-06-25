@@ -38,6 +38,8 @@ class PostController extends StandardController
 
     public function store(Request $request)
     {
+
+//        dd($request);
         //valida os dados
         $this->validate($request, $this->model->rules());
 
