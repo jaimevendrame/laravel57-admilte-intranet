@@ -52,7 +52,7 @@ class UserController extends StandardController
 
         $sectories = Sector::get();
 
-        return view("{$this->view}.create-edit", compact('data', 'title', 'sectories'));
+        return view("{$this->view}.create-edit", compact('title', 'sectories'));
     }
     public function store(Request $request)
     {
