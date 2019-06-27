@@ -66,7 +66,11 @@ Route::get('/blog/categoria/{url}', 'Site\SiteController@category');
 Route::get('/blog/posts/{url}', 'Site\SiteController@blogpost')->name('blog-post');
 Route::get('/blog', 'Site\SiteController@blog')->name('blog');
 Route::post('/blog/search', 'Site\SiteController@search')->name('search.blog');
-Route::get('/', 'Site\SiteController@index')->name('site');
+Route::get('/site', 'Site\SiteController@index')->name('site');
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 /****************************************************************************************
