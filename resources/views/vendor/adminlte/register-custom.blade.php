@@ -114,7 +114,7 @@
                 </div>
                 <div class="form-group has-feedback {{ $errors->has('sex') ? 'has-error' : '' }}">
                     <select class="form-control" name="sex" id="sex">
-                        <option value="N">Sexo:</option>
+                        <option value="">Sexo:</option>
                         <option value="N">Não informado</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="form-group has-feedback {{ $errors->has('marital_status') ? 'has-error' : '' }}">
                     <select class="form-control" name="marital_status" id="marital_status">
-                        <option value="0">Estado Civil</option>
+                        <option value="">Estado Civil</option>
                         <option value="0">Não informado</option>
                         <option value="1">Solteiro(a)</option>
                         <option value="2">Casado(a)</option>

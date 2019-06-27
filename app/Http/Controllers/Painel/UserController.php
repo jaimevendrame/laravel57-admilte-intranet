@@ -400,6 +400,8 @@ class UserController extends StandardController
     public function register(Request $request)
     {
 
+        // dd($request);
+
         //Converte data DD/MM/YYY para YYYY-MM-DD
         $origDate = $request['birth_date'];
 

@@ -48,7 +48,9 @@
                             <h4><strong>Data de Nascimento: </strong>{{$data->birth_date}}</h4>
                             <h4><strong>Sexo: </strong>{{$data->sex}}</h4>
                             <h4><strong>Estado Civil: </strong>{{$data->marital_status}}</h4>
+                            @if(@isset($data->sectorid->initials))
                             <h4><strong>Setor: </strong>{{$data->sectorid->initials}} - {{$data->sectorid->name}}</h4>
+                            @endif
                         </div>
                         <div class="col-md-4">
                             @if(isset($data->image))
