@@ -47,7 +47,7 @@ class SumulaController extends StandardController
         $title = "Cadastrar {$this->nameSmall}";
         $dataParlamentar = Parlamentar::get();
 
-        return view("{$this->view}.create-edit", compact('data', 'title', 'dataParlamentar'));
+        return view("{$this->view}.create-edit", compact('title', 'dataParlamentar'));
     }
 
 

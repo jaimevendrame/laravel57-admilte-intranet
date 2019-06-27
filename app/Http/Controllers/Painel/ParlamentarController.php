@@ -28,7 +28,7 @@ class ParlamentarController extends StandardController
         $title = "Cadastrar {$this->nameSmall}";
         $dataUsers = User::get();
 
-        return view("{$this->view}.create-edit", compact('data', 'title', 'dataUsers'));
+        return view("{$this->view}.create-edit", compact('title', 'dataUsers'));
     }
 
     public function edit($id)

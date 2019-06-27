@@ -33,7 +33,7 @@ class PostController extends StandardController
         $categories = Category::get();
 
 
-        return view("{$this->view}.create-edit", compact('data', 'title', 'categories'));
+        return view("{$this->view}.create-edit", compact('title', 'categories'));
     }
 
     public function store(Request $request)

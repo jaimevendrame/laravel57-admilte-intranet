@@ -40,7 +40,7 @@ class IdeaPublicController extends StandardController
         $sectories = Sector::get();
 
 
-        return view("{$this->view}.create-edit", compact('data', 'title', 'categories', 'sectories'));
+        return view("{$this->view}.create-edit", compact('title', 'categories', 'sectories'));
     }
 
     public function store(Request $request)

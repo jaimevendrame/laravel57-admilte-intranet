@@ -50,7 +50,7 @@ class StandardController extends BaseController
     {
         $title = "Cadastrar {$this->nameSmall}";
 
-        return view("{$this->view}.create-edit", compact('data', 'title'));
+        return view("{$this->view}.create-edit", compact('title'));
     }
 
     /**
