@@ -45,9 +45,43 @@
                             <h4><strong>Email: </strong>{{$data->email}}</h4>
                             <h4><strong>RG: </strong>{{$data->rg}}</h4>
                             <h4><strong>CPF: </strong>{{$data->cpf}}</h4>
-                            <h4><strong>Data de Nascimento: </strong>{{$data->birth_date}}</h4>
-                            <h4><strong>Sexo: </strong>{{$data->sex}}</h4>
-                            <h4><strong>Estado Civil: </strong>{{$data->marital_status}}</h4>
+                            <h4><strong>Data de Nascimento: </strong>{!! Carbon\Carbon::parse($data->birth_date)->format('d/m/Y') !!} </h4>
+                            <h4><strong>Sexo: </strong>
+                            @switch($data->sex)
+                                @case("M")
+                                    Masculino
+                                    @break
+                                @case("F")
+                                    Feminino
+                                    @break
+                                @default
+                                    Não informado
+                            @endswitch
+                            </h4>
+                            <h4><strong>Estado Civil: </strong>
+                                @switch($data->marital_status)
+                                    @case(0)
+                                        Não informado
+                                        @break
+                                    @case(1)
+                                        Solteiro(a)
+                                        @break
+                                    @case(2)
+                                        Casado(a)
+                                        @break
+                                    @case(3)
+                                        Desquitado(a)
+                                        @break
+                                    @case(4)
+                                        Viúvo(a)
+                                        @break
+                                    @case(5)
+                                        União estável
+                                        @break
+                                    @default
+                                        Outros
+                                @endswitch
+                            </h4>
                             @if(@isset($data->sectorid->initials))
                             <h4><strong>Setor: </strong>{{$data->sectorid->initials}} - {{$data->sectorid->name}}</h4>
                             @endif
