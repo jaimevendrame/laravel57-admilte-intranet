@@ -45,11 +45,9 @@
                             <h4><strong>Data do Protocolo: </strong>{{\Carbon\Carbon::parse($data->date_protocolo)->format('d/m/Y')}} </h4>
                             <h4><strong>Horário </strong>{{\Carbon\Carbon::parse($data->hour_protocolo)->format('H:i')}} </h4>
                             <h4><strong>Autor: </strong>{{ $data->parlamentar->nome_parlamentar. " - ".$data->parlamentar->sigla_partido }} </h4>
-                            @if(isset($dataEndSumula))
-                            <h4><strong>Data Fim Súmula: </strong>{{ \Carbon\Carbon::parse( $dataEndSumula )->format('d/m/Y') }} </h4>
-                            @endif
-                            @if(isset($dias))
-                            <h4><strong>Expira em: </strong>{{ $dias." dias" }} </h4>
+                            @if(isset($data->date_start))
+                            <h4><strong>Data Fim Súmula: </strong>{{ \Carbon\Carbon::parse(Helper::calcularDataEndSumula($data->date_start,90))->format('d/m/Y') }}</h4>
+                            <h4><strong>Expira em: </strong> {{ Helper::calcularDiasRestantesSumula($data->date_start)}}</h4>
                             @endif
                             <h4><strong>Descrição: </strong></h4>
                             <p>{{$data->description}}</p>

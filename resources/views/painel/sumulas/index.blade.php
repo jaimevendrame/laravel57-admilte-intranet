@@ -61,42 +61,10 @@
                         <td>{{ \Carbon\Carbon::parse($data->date_start)->format('d/m/Y') }}</td>
 
                         <td>
-                            @php
-                                if (($data->date_start != "")) {
-                                $data_end = date('Y-m-d', strtotime('+90 days', strtotime($data->date_start)));
-
-                                echo \Carbon\Carbon::parse($data_end)->format('d/m/Y'); }
-                            @endphp
+                            {{ \Carbon\Carbon::parse(Helper::calcularDataEndSumula($data->date_start,90))->format('d/m/Y') }}
                         </td>
                         <td>
-                            @php
-                                if (($data->date_start != "")) {
-                                    $data1 = new DateTime( $data->date_start );
-                                    $data2 = new DateTime( $data_end );
-                                    $data_atual = new DateTime( \Carbon\Carbon::now()->format('Y-m-d') );
-
-                                    $prazo = $data2->diff( $data_atual )->format("%a");
-
-
-
-                                    if ($data2 < $data_atual)
-                                    {
-
-
-                                     echo "VENCIDA";;
-
-
-                                    } else {
-
-                                     echo $prazo." dias";
-                                    }
-
-
-                                } else { echo "---"; }
-
-                            @endphp
-
-
+                            {{ Helper::calcularDiasRestantesSumula($data->date_start)}}
                         </td>
 
                         <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
