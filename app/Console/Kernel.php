@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->command('rotina:sumulas')->weeklyOn(1, '9:00');
-        // $schedule->command('rotina:sumulas')->twiceDaily(9, 15);
+        // $schedule->command('rotina:sumulas')->everyMinute();
     }
 
     /**

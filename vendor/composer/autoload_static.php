@@ -430,6 +430,7 @@ class ComposerStaticInit407777ff8b98ca05ee2be4ac649b8d14
         'App\\Events\\CommentAnswered' => __DIR__ . '/../..' . '/app/Events/CommentAnswered.php',
         'App\\Events\\PostViewed' => __DIR__ . '/../..' . '/app/Events/PostViewed.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Helpers\\Helper' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',

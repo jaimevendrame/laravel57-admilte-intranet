@@ -47,7 +47,18 @@ class RotinaSumulas extends Command
 
             $data = $this->returnSumulasParlamentares($parlamentar->parlamentar_id);
 
-            Mail::to($parlamentar->email)->send(new SendRotinaSumulas($data));
+            if($parlamentar->more_emails != null){
+
+                Mail::to($parlamentar->email)
+                ->cc(explode(',', $parlamentar->more_emails))
+                ->send(new SendRotinaSumulas($data));
+
+            } else {
+
+                Mail::to($parlamentar->email)
+                ->send(new SendRotinaSumulas($data));
+
+            }
 
 
         }
@@ -61,7 +72,7 @@ class RotinaSumulas extends Command
     public function rerturnParlamentaresSumulas()
     {
         $data = DB::table('sumulas')
-            ->select('sumulas.parlamentar_id','users.email')
+            ->select('sumulas.parlamentar_id','users.email', 'parlamentars.more_emails')
             ->join('parlamentars', 'sumulas.parlamentar_id', '=', 'parlamentars.id')
             ->join('users', 'parlamentars.user_id', '=', 'users.id')
             ->where([

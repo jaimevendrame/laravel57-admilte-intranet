@@ -60,16 +60,16 @@
                             <input type="text" class="form-control" id="InputNameParlamentar" name="nome_parlamentar" placeholder="Nome Parlamentar" value="{{$data->nome_parlamentar ?? old('nome_parlamentar')}}">
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="InputPartido">Nome Partido</label>
                             <input type="text" class="form-control" id="InputPartido" name="nome_partido" placeholder="Nome Partido" value="{{$data->nome_partido ?? old('nome_partido')}}">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="InputInitials">Sigla</label>
                             <input type="text" class="form-control" id="InputInitials" name="sigla_partido" placeholder="Sigla" value="{{$data->sigla_partido ?? old('sigla_partido')}}">
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Selecione o status do Parlamentar</label>
                             <select class="form-control" name="status" id="status">
                                 <option value="A" @if( isset($data['status'])) {{$data['status'] == 'A'? 'selected':''}}@endif>Ativo</option>
@@ -77,12 +77,18 @@
                             </select>
                         </div>
 
+                       <!-- textarea -->
+                       <div class="form-group col-md-12">
+                            <label>E-mails adicionais</label>
+                            <textarea class="form-control" rows="3" name="more_emails" id="more_emails" placeholder="Digite aqui os e-mails adicionais">{{$data->more_emails ?? old('more_emails')}}</textarea>
+                        </div>
+
 
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <button type="submit" class="btn btn-success">Enviar</button>
                             <button type="reset" class="btn btn-danger">Limpar</button>
                             <a href="{{route('parlamentares.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>

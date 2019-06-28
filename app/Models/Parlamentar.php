@@ -13,6 +13,7 @@ class Parlamentar extends Model
         'nome_partido',
         'sigla_partido',
         'status',
+        'more_emails',
     ];
 
     public function rules()
