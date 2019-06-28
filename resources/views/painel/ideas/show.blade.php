@@ -42,14 +42,15 @@
                         <div class="col-md-12">
                             <div class="box box-widget widget-user-2">
                                 <div class="widget-user-header bg-light-blue-gradient">
-                                    <div class="widget-user-image">
+                                    <div class="">
                                         @if( isset($data->user->image))
-                                            <img src="{{URL::asset('/assets/uploads/users/'. $data->user->image)}}" alt="{{ $data->user->name}}" alt="{{ $data->user->name}}" class="user-image img-circle img-responsive">
+                                            <img src="{{URL::asset('/assets/uploads/users/'. $data->user->image)}}" alt="{{ $data->user->name}}" alt="{{ $data->user->name}}" class="user-image2 img-responsive">
                                         @else
-                                            <img src="{{URL::asset('/assets/uploads/users/no-image.png')}}" alt="{{ $data->user->name}}" class="user-image img-circle img-responsive">
+                                            <img src="{{URL::asset('/assets/uploads/users/no-image.png')}}" alt="{{ $data->user->name}}" class="user-image2 img-responsive">
                                         @endif
                                     </div>
-                                    <h3 class="widget-user-username">{{$data->user->name}}</h3>
+                                    <span><small>Autor:</small></span>
+                                    <h3 class="widget-user-username">{{$data->user->name. " ".$data->user->last_name}}</h3>
                                     <h5 class="widget-user-desc">{{$data->user->email}}</h5>
                                 </div>
                                 <div class="box-footer no-padding">
@@ -83,12 +84,12 @@
                                         <li><h5><strong>Assessor: </strong></h5>
                                             <p>{{$data->assessor->name}}</p>
                                         </li>
-{{--                                            @if(isset($data->user->sector->initials))--}}
+                                           @if(isset($data->user->sector->initials))
                                                 <li><h5><strong>Setor: </strong></h5>
                                                     <p>{{$data->user->sector->initials}}</p>
 {{--                                                    <p>{{$data->user->sectorid->initials}}</p>--}}
                                                 </li>
-                                            {{--@endif--}}
+                                            @endif
                                         @endif
                                     </ul>
 

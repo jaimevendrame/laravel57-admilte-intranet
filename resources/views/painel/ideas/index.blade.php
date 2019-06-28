@@ -68,6 +68,7 @@
 
                             @can('view_ideas')
                                 <a href='{{route('ideas.edit-assessor', $data->id)}}' class="btn btn-warning btn-xs" alt="Editar"><i class="fa fa-edit"></i></a>
+                                <a href='{{route('ideas.edit', $data->id)}}' class="btn btn-warning btn-xs" alt="Editar"><i class="fa fa-edit"></i></a>
                             @endcan
                         </td>
                     </tr>

@@ -5,10 +5,7 @@
 
 .user-image2
 {
-    /*float:left;*/
-    width:auto !important;
-    height:80px !important;
-    margin-right:10px;margin-top:-7px
+    float:left;width:auto;height:100px;margin-right:10px;margin-top:-2px; padding-bottom: 10px;
 }
 
 .image-cropper img{
