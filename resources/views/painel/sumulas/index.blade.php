@@ -54,10 +54,14 @@
                     <th width="150">Ações</th>
                 </tr>
                 @forelse($datas as $data)
-                    <tr>
+                @php
+                    $color = Helper::calcularDiasRestantesSumula($data->date_start);
+        
+                @endphp
+                    <tr {{ Helper::calcularDiasRestantesSumula($data->date_start) == 'VENCIDA'? 'class=danger': '' }}>
                         <td>{{$data->nr_protocolo}}</td>
                         <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('d/m/Y'). " - " . \Carbon\Carbon::parse($data->hour_protocolo)->format('H:i') }}</td>
-                        <td>{{$data->parlamentar->nome_parlamentar}}</td>
+                        <td cla>{{$data->parlamentar->nome_parlamentar}}</td>
                         <td>{{ \Carbon\Carbon::parse($data->date_start)->format('d/m/Y') }}</td>
 
                         <td>
