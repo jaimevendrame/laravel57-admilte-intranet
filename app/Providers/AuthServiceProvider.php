@@ -72,4 +72,16 @@ class AuthServiceProvider extends ServiceProvider
 
 
     }
+
+    public function register()
+    {
+        $this->loadHelpers();
+    }
+    
+    protected function loadHelpers()
+    {
+        foreach (glob(__DIR__.'/../Helpers/*.php') as $filename) {
+            require_once $filename;
+        }
+    }
 }

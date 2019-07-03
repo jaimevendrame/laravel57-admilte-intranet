@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-trait
-AuthenticatesUsers
+trait AuthenticatesUsers
 {
     use RedirectsUsers, ThrottlesLogins;
 
@@ -159,7 +158,7 @@ AuthenticatesUsers
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/home');
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     /**

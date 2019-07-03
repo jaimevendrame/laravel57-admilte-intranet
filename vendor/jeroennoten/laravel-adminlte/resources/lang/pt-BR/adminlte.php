@@ -3,16 +3,9 @@
 return [
 
     'full_name'                   => 'Nome completo',
-    'name'                        => 'Nome',
-    'last_name'                   => 'Sobrenome',
-    'rg'                          => 'RG',
-    'cpf'                         => 'CPF',
     'email'                       => 'Email',
     'password'                    => 'Senha',
     'retype_password'             => 'Repita a senha',
-    'birth_date'                  => 'Data de Nascimento',
-    'sex'                         => 'Sexo',
-    'image'                         => 'Imagem de Perfil',
     'remember_me'                 => 'Lembrar-me',
     'register'                    => 'Registrar',
     'register_a_new_membership'   => 'Registrar um novo membro',
