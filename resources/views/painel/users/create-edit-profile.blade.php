@@ -84,7 +84,8 @@
                                 <option value="0" @if(isset($data)) {{ $data->marital_status == 0  ? 'selected' : '' }} @endif>Não informado</option>
                                 <option value="1" @if(isset($data)) {{ $data->marital_status == 1  ? 'selected' : '' }} @endif>Solteiro(a)</option>
                                 <option value="2" @if(isset($data)) {{ $data->marital_status == 2  ? 'selected' : '' }} @endif>Casado(a)</option>
-                                <option value="3" @if(isset($data)) {{ $data->marital_status == 3  ? 'selected' : '' }} @endif>Desquitado(a)</option>
+                                <option value="3" @if(isset($data)) {{ $data->marital_status == 3  ? 'selected' : '' }} @endif>Desquitado(a)/Separado(a)</option>
+                                <option value="3" @if(isset($data)) {{ $data->marital_status == 7  ? 'selected' : '' }} @endif>Divorciado(a)</option>
                                 <option value="4" @if(isset($data)) {{ $data->marital_status == 4  ? 'selected' : '' }} @endif>Viúvo(a)</option>
                                 <option value="5" @if(isset($data)) {{ $data->marital_status == 5  ? 'selected' : '' }} @endif>União estável</option>
                                 <option value="6" @if(isset($data)) {{ $data->marital_status == 6  ? 'selected' : '' }} @endif>Outros</option>

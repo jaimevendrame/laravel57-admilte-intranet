@@ -96,7 +96,8 @@
                                 <option value="0">Não informado</option>
                                 <option value="1">Solteiro(a)</option>
                                 <option value="2">Casado(a)</option>
-                                <option value="3">Desquitado(a)</option>
+                                <option value="3">Desquitado(a)/Separado(a)</option>
+                                <option value="7">Divorciado(a)</option>
                                 <option value="4">Viúvo(a)</option>
                                 <option value="5">União estável</option>
                                 <option value="6">Outros</option>
