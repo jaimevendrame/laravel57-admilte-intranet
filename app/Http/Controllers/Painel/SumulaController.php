@@ -118,21 +118,30 @@ class SumulaController extends StandardController
         // dd($request);
 
         //Recupera os dados do formulário
-        $dataForm = $request->get('pesquisa');
+        $dataForm = $request->except('_token');
 
         $title = "Listagem {$this->nameSmall}s";
 
-        //Filtra os usuários
-        $datas = $this->model
-            ->join('parlamentars', 'sumulas.parlamentar_id','=','parlamentars.id')
-            ->orWhere('nr_protocolo', 'LIKE', "%{$dataForm}%")
-            ->orWhere('description', 'LIKE', "%{$dataForm}%")
-            ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$dataForm}%")
-            ->orWhere('date_protocolo', 'LIKE', "%{$dataForm}%")
-            ->orWhere('hour_protocolo', 'LIKE', "%{$dataForm}%")
-            ->orWhere('date_start', 'LIKE', "%{$dataForm}%")
-            ->orWhere('sumulas.status', 'LIKE', "%{$dataForm}%")
-            ->paginate($this->totalPage);
+
+        //Filtra os dados
+        
+        if ( $dataForm['pesquisa'] != '') {
+            $datas = $this->model
+                ->join('parlamentars', 'sumulas.parlamentar_id','=','parlamentars.id')
+                ->orWhere('nr_protocolo', 'LIKE', "%{$dataForm}%")
+                ->orWhere('description', 'LIKE', "%{$dataForm}%")
+                ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$dataForm}%")
+                ->orWhere('date_protocolo', 'LIKE', "%{$dataForm}%")
+                ->orWhere('hour_protocolo', 'LIKE', "%{$dataForm}%")
+                ->orWhere('date_start', 'LIKE', "%{$dataForm}%")
+                ->orWhere('sumulas.status',  $dataForm['status'])
+                ->paginate($this->totalPage);
+        } else {
+            $datas = $this->model
+                ->where('sumulas.status', $dataForm['status'])
+                ->paginate($this->totalPage);
+        }
+
 
         return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
     }

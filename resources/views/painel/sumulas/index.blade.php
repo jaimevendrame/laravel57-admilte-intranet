@@ -18,9 +18,15 @@
             <h3 class="box-title">
                 <a href="{{route('sumulas.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA SÚMULA</a>
             </h3>
-            <div class="box-tools">
-                <form role="form" method="get" action="{{url('painel/sumulas/pesquisar')}}" enctype="multipart/form-data">
+            <div class="box-tools pull-right">
+                <form class="form-inline" role="form" method="get" action="{{url('painel/sumulas/pesquisar')}}" enctype="multipart/form-data">
                     {{--{{ csrf_field() }}--}}
+                    <div class="input-group input-group-sm" style="width: 100px;">
+                        <select class="form-control select2" name="status" id="status">
+                            <option value="A" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'A'? 'selected':''}} @else @endif >Ativo</option>
+                            <option value="P" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'P'? 'selected':''}} @else @endif >Pendente</option>
+                        </select>
+                    </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">
                         <div class="input-group-btn">
@@ -54,10 +60,7 @@
                     <th width="150">Ações</th>
                 </tr>
                 @forelse($datas as $data)
-                @php
-                    $color = Helper::calcularDiasRestantesSumula($data->date_start);
-        
-                @endphp
+
                     <tr {{ Helper::calcularDiasRestantesSumula($data->date_start) == 'VENCIDA'? 'class=danger': '' }}>
                         <td>{{$data->nr_protocolo}}</td>
                         <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('d/m/Y'). " - " . \Carbon\Carbon::parse($data->hour_protocolo)->format('H:i') }}</td>
@@ -71,7 +74,7 @@
                             {{ Helper::calcularDiasRestantesSumula($data->date_start)}}
                         </td>
 
-                        <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
+                        <td>{{$data->status == 'A'? 'ATIVO':'PENDENTE'}} </td>
 
 
                         <td>
