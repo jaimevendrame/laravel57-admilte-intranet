@@ -22,7 +22,7 @@ class CreateSumulasTable extends Migration
             $table->date('date_protocolo');
             $table->time('hour_protocolo');
             $table->date('date_start')->nullable()->comment('Data de inicio de prazo');
-            $table->enum('status', ['A', 'P'])->default('P')->comment('A-> Ativa, P-> Pendente');
+            $table->enum('status', ['A', 'P','C'])->default('P')->comment('A-> Ativa, P-> Pendente, C-> Contrário');
             $table->string('image', 200)->nullable();
             $table->timestamps();
         });

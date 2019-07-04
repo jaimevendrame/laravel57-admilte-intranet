@@ -26,7 +26,7 @@ class Sumula extends Model
             'description'      => 'required|min:10|max:3000',
             'date_protocolo'   => 'required|date',
             'hour_protocolo'   => 'required',
-            'status'           =>'required|in:A,P',
+            'status'           =>'required|in:A,P,C',
             'image'              => 'mimes:jpeg,png,jpg,zip,pdf|max:2048',
             'parlamentar_id'   => 'required'
         ];

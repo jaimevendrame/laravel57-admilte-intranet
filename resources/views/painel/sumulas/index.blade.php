@@ -25,6 +25,7 @@
                         <select class="form-control select2" name="status" id="status">
                             <option value="A" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'A'? 'selected':''}} @else @endif >Ativo</option>
                             <option value="P" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'P'? 'selected':''}} @else @endif >Pendente</option>
+                            <option value="C" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'C'? 'selected':''}} @else @endif >Contrário</option>
                         </select>
                     </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -74,7 +75,7 @@
                             {{ Helper::calcularDiasRestantesSumula($data->date_start)}}
                         </td>
 
-                        <td>{{$data->status == 'A'? 'ATIVO':'PENDENTE'}} </td>
+                        <td>{{$data->status == 'A'? 'ATIVO': $data->status == 'P'? 'PENDENTE': 'CONTRÁRIO'}} </td>
 
 
                         <td>

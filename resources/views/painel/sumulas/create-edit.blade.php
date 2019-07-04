@@ -76,6 +76,7 @@
                             <select class="form-control" name="status" id="status">
                                 <option value="A" @if( isset($data['status'])) {{$data['status'] == 'A'? 'selected':''}}@endif>Ativo</option>
                                 <option value="P" @if( isset($data['status'])) {{$data['status'] == 'P'? 'selected':''}}@endif>Pendente</option>
+                                <option value="C" @if( isset($data['status'])) {{$data['status'] == 'C'? 'selected':''}}@endif>Contrário</option>
                             </select>
                         </div>
                         <!-- textarea -->

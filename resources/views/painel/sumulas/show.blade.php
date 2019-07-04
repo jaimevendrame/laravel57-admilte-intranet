@@ -51,7 +51,7 @@
                             @endif
                             <h4><strong>Descrição: </strong></h4>
                             <p>{{$data->description}}</p>
-                            <h4><strong>Status: </strong>{{$data->status == 'A'? 'ATIVO':'INATIVO'}}</h4>
+                            <h4><strong>Status: </strong>{{$data->status == 'A'? 'ATIVO': $data->status == 'P'? 'PENDENTE': 'CONTRÁRIO'}}</h4>
                             <hr>
                             <h4><strong>Protocolista: </strong>{{$data->user->name}}</h4>
 
