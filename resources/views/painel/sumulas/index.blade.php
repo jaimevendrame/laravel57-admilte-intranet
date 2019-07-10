@@ -94,13 +94,13 @@
                 </tbody>  
             </table>
 
-            <div class="box-footer">
+            {{-- <div class="box-footer">
                 @if(isset($dataForm))
                     {{$datas->appends(Request::only(['pesquisa','status']))->links()}}
                 @else
                     {{$datas->links()}}
                 @endif
-            </div>
+            </div> --}}
             <!-- /.box-footer-->
         </div>
         <!-- /.box-body -->
