@@ -92,9 +92,11 @@
             </table>
             <div class="box-footer">
                 @if(isset($dataForm))
+            <div>Resultado: {{$dataForm->count()}} súmulas</div>
                     {{$datas->appends(Request::only(['pesquisa','status']))->links()}}
                 @else
-                    {{$datas->links()}}
+                <div>Resultado: {{$data->count()}} súmulas</div>
+                {{$datas->links()}}
                 @endif
             </div>
             <!-- /.box-footer-->
