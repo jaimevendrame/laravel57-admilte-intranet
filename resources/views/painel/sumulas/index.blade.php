@@ -92,7 +92,7 @@
             </table>
             <div class="box-footer">
                 @if(isset($dataForm))
-                    {{$datas->appends(Request::only('pesquisa'))->links()}}
+                    {{$datas->appends(Request::only(['pesquisa','status']))->links()}}
                 @else
                     {{$datas->links()}}
                 @endif
