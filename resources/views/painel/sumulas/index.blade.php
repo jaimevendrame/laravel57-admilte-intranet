@@ -120,7 +120,7 @@
 $(document).ready(function() {
     $('#tabela').DataTable({
         "order": [[ 0, "desc" ]],
-        "lengthMenu": [[15, 30, 50, -1], [15, 30, 50, "All"]],
+        "lengthMenu": [[15, 30, 50, -1], [15, 30, 50, "Todos"]],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
