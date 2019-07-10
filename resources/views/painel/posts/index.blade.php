@@ -30,7 +30,6 @@
                 </form>
             </div>
         </div>
-
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
             @if( Session::has('success'))
@@ -38,7 +37,6 @@
                     <div class="alert alert-success alert-dismissible hide-msg">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-warning"></i> {{Session::get('success')}}</h4>
-
                     </div>
                 </div>
             @endif

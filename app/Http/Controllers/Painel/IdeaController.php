@@ -114,7 +114,7 @@ class IdeaController extends StandardController
         //Recuperar usuário pelo id
         $data = $this->model->find($id);
 
-        $title = "Editar {$this->nameSmall}s";
+        $title = "Analisar {$this->nameSmall}s";
 
         $categories = Category::get();
 
@@ -125,21 +125,22 @@ class IdeaController extends StandardController
     public function update(Request $request, $id)
     {
 
+
+        //pegar id assessor
+        $request[ 'assessor_id'] = Auth::id();
+
+        //pegar id sector
+        $request[ 'sector_id'] = Auth::user()->sector_id;
+
+
         //valida dados
-
-        if(!Auth::user()->can('view_ideas'))
-
-            $this->validate($request, $this->model->rules($id));
-
-        else
-            $this->validate($request, $this->model->rules_view_ideas($id));
-
+        $this->validate($request, $this->model->rules($id));
 
 
         $dataForm = $request->all();
 
 
-//        dd($dataForm);
+    //    dd($dataForm);
 
         //Criar objeto categorias
         $data = $this->model->find($id);
@@ -147,18 +148,9 @@ class IdeaController extends StandardController
         //pegar valor do checkbox featured (destaque)
         $dataForm['featured'] = isset( $dataForm['featured']) ? true : false;
 
-        //pegar usuário logado
-        $dataForm[ 'user_id'] = $data->user_id;
+    
 
-        //pegar data atual
-        $dataForm[ 'date'] = $data->date;
-
-        //pegar hora atual
-        $dataForm[ 'hour'] = $data->hour;
-
-
-        //pegar hora atual
-        $dataForm[ 'assessor_id'] = Auth::id();
+       
 
         //Verificar se existe a imagem
         if ( $this->upload && $request->hasFile($this->upload['image'])){
@@ -220,25 +212,40 @@ class IdeaController extends StandardController
     }
 
 
-    public function editAssessor($id)
+    public function search(Request $request)
     {
+        //Recupera os dados do formulário
+        $dataForm = $request->except('_token');
 
-        //Recuperar usuário pelo id
-        $data = $this->model->find($id);
+        $title = "Listagem {$this->nameSmall}s";
 
-        $title = "Editar {$this->nameSmall}s";
+    
+        //Filtra os dados
+        
+        if ( $dataForm['pesquisa'] != '' ){
+            $datas = $this->model
+                ->select(['ideas.*','users.name as name_user'])
+                ->join('users','ideas.user_id','=','users.id')
+                ->where('title', 'LIKE', "%{$dataForm}%")
+                ->orWhere('description', 'LIKE', "%{$dataForm}%")
+                ->orWhere('tags', 'LIKE', "%{$dataForm}%")
+                ->orWhere('users.name', 'LIKE', "%{$dataForm}%")
+                ->orWhere('status',  $dataForm['status'])
+                ->paginate($this->totalPage);
 
-        $categories = Category::get();
+        }
+        else if ( $dataForm['status'] == null ) {
 
+            $datas = $this->model->paginate($this->totalPage);
 
-
-        return view("{$this->view}.create-edit-assessor", compact('data', 'title', 'categories', 'sectories'));
+        }
+        else {
+            $datas = $this->model
+                ->where('status', $dataForm['status'])
+                ->paginate($this->totalPage);
+        }
+        return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
     }
-
-
-    /* Área para acesso do cidadão;
-     *
-     * */
 
 
 

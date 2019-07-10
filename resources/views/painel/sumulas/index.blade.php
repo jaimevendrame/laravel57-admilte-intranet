@@ -19,23 +19,24 @@
                 <a href="{{route('sumulas.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA SÚMULA</a>
             </h3>
             <div class="box-tools pull-right">
-                <form class="form-inline" role="form" method="get" action="{{url('painel/sumulas/pesquisar')}}" enctype="multipart/form-data">
-                    {{--{{ csrf_field() }}--}}
-                    <div class="input-group input-group-sm" style="width: 100px;">
-                        <select class="form-control select2" name="status" id="status">
-                            <option value="A" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'A'? 'selected':''}} @else @endif >Ativo</option>
-                            <option value="P" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'P'? 'selected':''}} @else @endif >Pendente</option>
-                            <option value="C" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'C'? 'selected':''}} @else @endif >Contrário</option>
-                        </select>
-                    </div>
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <form class="form-inline" role="form" method="get" action="{{url('painel/ideas/pesquisar')}}" enctype="multipart/form-data">
+                        {{--{{ csrf_field() }}--}}
+                        <div class="input-group input-group-sm" style="width: 100px;">
+                            <select class="form-control select2" name="status" id="status">
+                                <option value="">Todas</option>
+                                <option value="A" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'A'? 'selected':''}} @else @endif >Ativo</option>
+                                <option value="P" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'P'? 'selected':''}} @else @endif >Pendente</option>
+                                <option value="C" @if( isset($dataForm['status'])) {{$dataForm['status'] == 'C'? 'selected':''}} @else @endif >Contrário</option>
+                            </select>
                         </div>
-                    </div>
-                </form>
-            </div>
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
         </div>
 
         <!-- /.box-header -->
@@ -75,7 +76,7 @@
                             {{ Helper::calcularDiasRestantesSumula($data->date_start)}}
                         </td>
 
-                        <td>{{$data->status == 'A'? 'ATIVO': $data->status == 'P'? 'PENDENTE': 'CONTRÁRIO'}} </td>
+                        <td>{{$data->status == 'A'? 'ATIVO': ($data->status == 'P'? 'PENDENTE': 'CONTRÁRIO')}} </td>
 
 
                         <td>

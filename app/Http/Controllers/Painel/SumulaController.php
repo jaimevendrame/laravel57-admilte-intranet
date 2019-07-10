@@ -125,18 +125,25 @@ class SumulaController extends StandardController
 
         //Filtra os dados
         
-        if ( $dataForm['pesquisa'] != '') {
+        if ( $dataForm['pesquisa'] != '' ){
             $datas = $this->model
                 ->join('parlamentars', 'sumulas.parlamentar_id','=','parlamentars.id')
-                ->orWhere('nr_protocolo', 'LIKE', "%{$dataForm}%")
-                ->orWhere('description', 'LIKE', "%{$dataForm}%")
-                ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$dataForm}%")
-                ->orWhere('date_protocolo', 'LIKE', "%{$dataForm}%")
-                ->orWhere('hour_protocolo', 'LIKE', "%{$dataForm}%")
-                ->orWhere('date_start', 'LIKE', "%{$dataForm}%")
+                ->orWhere('nr_protocolo', 'LIKE', "%{$dataForm['pesquisa']}%")
+                ->orWhere('description', 'LIKE', "%{$dataForm['pesquisa']}%")
+                ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$dataForm['pesquisa']}%")
+                ->orWhere('date_protocolo', 'LIKE', "%{$dataForm['pesquisa']}%")
+                ->orWhere('hour_protocolo', 'LIKE', "%{$dataForm['pesquisa']}%")
+                ->orWhere('date_start', 'LIKE', "%{$dataForm['pesquisa']}%")
                 ->orWhere('sumulas.status',  $dataForm['status'])
                 ->paginate($this->totalPage);
-        } else {
+
+        }
+        else if ( $dataForm['status'] == null ) {
+
+            $datas = $this->model->paginate($this->totalPage);
+
+        }
+        else {
             $datas = $this->model
                 ->where('sumulas.status', $dataForm['status'])
                 ->paginate($this->totalPage);

@@ -36,18 +36,19 @@ class AuthServiceProvider extends ServiceProvider
             });
 
             Gate::define('update_profile', function (User $user, $id){
-
                 return $user->id == $id;
             });
 
 
 
             Gate::define('update_idea', function (User $user, $id){
-
                 return $user->id == $id;
             });
 
 
+            Gate::define('owner_idea', function (User $user, $data){
+                return $user->sector_id == $data->sector_id;
+            });
 
             //Recuperar todas permissions
             $permissions = Permission::all();

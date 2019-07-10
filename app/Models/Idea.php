@@ -22,23 +22,15 @@ class Idea extends Model
         'tags',
         'file',
         'assessor_id',
+        'sector_id',
     ];
 
     public function rules(){
         return [
-            'title'             => 'required|min:3|max:250',
-            'category_id'       => 'required',
-            'description'       => 'required|min:10|max:6000',
-            'tags'              => 'required|min:3|max:250',
-            'file'              => 'mimes:jpeg,png,jpg,zip,pdf|max:2048',
-        ];
-    }
-
-    public function rules_view_ideas(){
-        return [
-            'status'            => 'required|in:A,R',
+            'status'            => 'required|in:P,A,R',
             'answer_status'     => 'required|min:3|max:250',
-//            'assessor_id'     => 'required|min:3|max:250',
+            'assessor_id'       => 'required',
+            'sector_id'         => 'required',
         ];
     }
 
@@ -59,6 +51,9 @@ class Idea extends Model
         return $this->belongsTo(User::class, 'assessor_id');
     }
 
-
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
 
 }
