@@ -35,7 +35,7 @@ class SumulaController extends StandardController
     public function index()
     {
 
-        $datas = $this->model->orderBy('nr_protocolo', 'desc')->orderBy('date_protocolo', 'asc')->paginate($this->totalPage);
+        $datas = $this->model->orderBy('nr_protocolo', 'desc')->orderBy('date_protocolo', 'asc')->get();
 
         $title = "Listagem {$this->nameSmall}";
 
