@@ -122,35 +122,53 @@ class SumulaController extends StandardController
 
         $title = "Listagem {$this->nameSmall}s";
 
+        $status = $dataForm['status'];
+
+        // dd($status);
+
+        $pesquisa = $dataForm['pesquisa'];
+
+        // dd($pesquisa);
+
 
         //Filtra os dados
-        
-        if ( $dataForm['pesquisa'] != '' ){
-            $datas = $this->model
+
+
+        $datas = $this->model
                 ->join('parlamentars', 'sumulas.parlamentar_id','=','parlamentars.id')
-                ->orWhere('nr_protocolo', 'LIKE', "%{$dataForm['pesquisa']}%")
-                ->orWhere('description', 'LIKE', "%{$dataForm['pesquisa']}%")
-                ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$dataForm['pesquisa']}%")
-                ->orWhere('date_protocolo', 'LIKE', "%{$dataForm['pesquisa']}%")
-                ->orWhere('hour_protocolo', 'LIKE', "%{$dataForm['pesquisa']}%")
-                ->orWhere('date_start', 'LIKE', "%{$dataForm['pesquisa']}%")
-                ->orWhere('sumulas.status',  $dataForm['status'])
+                // ->orWhere('nr_protocolo', 'LIKE', "%{$pesquisa}%")
+                // ->orWhere('description', 'LIKE', "%{$pesquisa}%")
+                // ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$pesquisa}%")
+                // ->orWhere('date_protocolo', 'LIKE', "%{$pesquisa}%")
+                // ->orWhere('hour_protocolo', 'LIKE', "%{$pesquisa}%")
+                // ->orWhere('date_start', 'LIKE', "%{$pesquisa}%")
+                // // ->whereIn('sumulas.status',  $status)
                 ->paginate($this->totalPage);
 
-        }
-        else if ( $dataForm['status'] == null ) {
-
-            $datas = $this->model->paginate($this->totalPage);
-
-        }
-        else {
-            $datas = $this->model
-                ->where('sumulas.status', $dataForm['status'])
-                ->paginate($this->totalPage);
-        }
-
+                
+                // dd( $datas );
 
         return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
+    }
+
+
+    public function sqlSearch($pesquisa, $status){
+
+
+        $data = $this->model
+        ->join('parlamentars', 'sumulas.parlamentar_id','=','parlamentars.id')
+        ->orWhere('nr_protocolo', 'LIKE', "%{$pesquisa}%")
+        ->orWhere('description', 'LIKE', "%{$pesquisa}%")
+        ->orWhere('parlamentars.nome_parlamentar', 'LIKE', "%{$pesquisa}%")
+        ->orWhere('date_protocolo', 'LIKE', "%{$pesquisa}%")
+        ->orWhere('hour_protocolo', 'LIKE', "%{$pesquisa}%")
+        ->orWhere('date_start', 'LIKE', "%{$pesquisa}%")
+        ->whereIn('sumulas.status',  $status)
+        ->paginate($this->totalPage);
+
+
+        dd($data);
+        return $data;
     }
 
    

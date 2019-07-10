@@ -154,7 +154,7 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], funct
 
 
 //Súmulas
-    Route::any('/sumulas/pesquisar', 'Painel\SumulaController@search')->name('sumula.search');
+    Route::post('/sumulas/pesquisar', 'Painel\SumulaController@search')->name('sumula.search');
     Route::resource('/sumulas', 'Painel\SumulaController');
 
 

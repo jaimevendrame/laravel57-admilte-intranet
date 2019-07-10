@@ -19,7 +19,7 @@
                 {{-- <a href="{{route('ideas.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA IDEIA</a> --}}
             </h3>
             <div class="box-tools pull-right">
-                    <form class="form-inline" role="form" method="get" action="{{url('painel/sumulas/pesquisar')}}" enctype="multipart/form-data">
+                    <form class="form-inline" role="form" method="get" action="{{url('painel/ideas/pesquisar')}}" enctype="multipart/form-data">
                         {{--{{ csrf_field() }}--}}
                         <div class="input-group input-group-sm" style="width: 100px;">
                             <select class="form-control select2" name="status" id="status">

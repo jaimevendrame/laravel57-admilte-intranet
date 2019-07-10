@@ -244,6 +244,8 @@ class IdeaController extends StandardController
                 ->where('status', $dataForm['status'])
                 ->paginate($this->totalPage);
         }
+
+        // dd($datas);
         return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
     }
 
