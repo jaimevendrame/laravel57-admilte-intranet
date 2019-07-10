@@ -18,7 +18,7 @@
             <h3 class="box-title">
                 <a href="{{route('sumulas.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA SÚMULA</a>
             </h3>
-            <div class="box-tools pull-right">
+            {{-- <div class="box-tools pull-right">
                     <form class="form-inline" role="form" method="post" action="{{url('painel/sumulas/pesquisar')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="input-group input-group-sm" style="width: 100px;">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+            </div> --}}
         </div>
 
         <!-- /.box-header -->
