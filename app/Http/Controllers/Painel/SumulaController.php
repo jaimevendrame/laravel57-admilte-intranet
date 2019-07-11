@@ -106,7 +106,7 @@ class SumulaController extends StandardController
 
         $dataParlamentar = Parlamentar::get();
 
-        $title = "Editar {$this->nameSmall}s";
+        $title = "Editar {$this->nameSmall}";
 
         return view("{$this->view}.create-edit", compact('data', 'title', 'dataParlamentar'));
     }

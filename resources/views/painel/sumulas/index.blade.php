@@ -80,7 +80,22 @@
                                 {{ Helper::calcularDiasRestantesSumula($data->date_start)}}
                             </td>
     
-                            <td>{{$data->status == 'A'? 'ATIVO': ($data->status == 'P'? 'PENDENTE': 'CONTRÁRIO')}} </td>
+                            <td>
+                                    @switch($data->status)
+                                    @case("A")
+                                        ATIVO
+                                        @break
+                                    @case("P")
+                                        PENDENTE
+                                        @break
+                                    @case("C")
+                                        CONTRÁRIO
+                                        @break
+                                    @default
+                                        ARQUIVADA
+                                @endswitch
+                                
+                            </td>
     
     
                             <td>

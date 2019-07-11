@@ -39,7 +39,7 @@
 
                             } else {
 
-                             echo "Esta Súmala expira em " .$prazo." dias";
+                             echo "Esta SúmUla expira em " .$prazo." dias";
                             }
 
 

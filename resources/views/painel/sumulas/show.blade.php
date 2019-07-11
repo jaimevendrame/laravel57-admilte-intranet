@@ -51,7 +51,20 @@
                             @endif
                             <h4><strong>Descrição: </strong></h4>
                             <p>{{$data->description}}</p>
-                            <h4><strong>Status: </strong>{{$data->status == 'A'? 'ATIVO': $data->status == 'P'? 'PENDENTE': 'CONTRÁRIO'}}</h4>
+                            <h4><strong>Status: </strong>
+                                @switch($data->status)
+                                @case("A")
+                                    ATIVO
+                                    @break
+                                @case("P")
+                                    PENDENTE
+                                    @break
+                                @case("C")
+                                    CONTRÁRIO
+                                    @break
+                                @default
+                                    ARQUIVADA
+                            @endswitch                            </h4>
                             <hr>
                             <h4><strong>Protocolista: </strong>{{$data->user->name}}</h4>
 
