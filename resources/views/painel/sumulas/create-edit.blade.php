@@ -77,6 +77,7 @@
                                 <option value="A" @if( isset($data['status'])) {{$data['status'] == 'A'? 'selected':''}}@endif>Ativo</option>
                                 <option value="P" @if( isset($data['status'])) {{$data['status'] == 'P'? 'selected':''}}@endif>Pendente</option>
                                 <option value="C" @if( isset($data['status'])) {{$data['status'] == 'C'? 'selected':''}}@endif>Contrário</option>
+                                <option value="F" @if( isset($data['status'])) {{$data['status'] == 'F'? 'selected':''}}@endif>Arquivada</option>
                             </select>
                         </div>
                         <!-- textarea -->
