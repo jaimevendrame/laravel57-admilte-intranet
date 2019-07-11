@@ -71,10 +71,10 @@
                             <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('d/m/Y'). " - " . \Carbon\Carbon::parse($data->hour_protocolo)->format('H:i') }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('Y') }}</td>
                             <td cla>{{$data->parlamentar->nome_parlamentar}}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->date_start)->format('d/m/Y') }}</td>
+                            <td>{{ isset($data->date_start) ? \Carbon\Carbon::parse($data->date_start)->format('d/m/Y') : '' }}</td>
     
                             <td>
-                                {{ \Carbon\Carbon::parse(Helper::calcularDataEndSumula($data->date_start,90))->format('d/m/Y') }}
+                                {{ isset($data->date_start) ? \Carbon\Carbon::parse(Helper::calcularDataEndSumula($data->date_start,90))->format('d/m/Y') : '' }}
                             </td>
                             <td>
                                 {{ Helper::calcularDiasRestantesSumula($data->date_start)}}
