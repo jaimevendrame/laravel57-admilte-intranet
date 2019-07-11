@@ -55,6 +55,7 @@
                     <tr>
                         <th>Nº Protocolo</th>
                         <th>Data/Hora </th>
+                        <th>Ano </th>
                         <th>Autor</th>
                         <th>Data início</th>
                         <th>Data fim</th>
@@ -68,6 +69,7 @@
                         <tr {{ Helper::calcularDiasRestantesSumula($data->date_start) == 'VENCIDA'? 'class=danger': '' }}>
                             <td>{{$data->nr_protocolo}}</td>
                             <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('d/m/Y'). " - " . \Carbon\Carbon::parse($data->hour_protocolo)->format('H:i') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->date_protocolo)->format('Y') }}</td>
                             <td cla>{{$data->parlamentar->nome_parlamentar}}</td>
                             <td>{{ \Carbon\Carbon::parse($data->date_start)->format('d/m/Y') }}</td>
     
@@ -119,7 +121,7 @@
 
 $(document).ready(function() {
     $('#tabela').DataTable({
-        "order": [[ 0, "desc" ]],
+        "order": [[ 2, "desc" ], [ 0, "desc"]],
         "lengthMenu": [[15, 30, 50, -1], [15, 30, 50, "Todos"]],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
