@@ -81,7 +81,7 @@
                             </td>
     
                             <td>
-                                    @switch($data->status)
+                                @switch($data->status)
                                     @case("A")
                                         ATIVO
                                         @break

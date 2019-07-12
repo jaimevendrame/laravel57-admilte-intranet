@@ -20,7 +20,7 @@
     <div class="col-md-8 col-sm-12 col-md-offset-2">
         <div class="register-box">
             <div class="register-logo">
-                <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+                <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.alternartivo_nome', '') !!}</a>
             </div>
 
             <div class="register-box-body">
@@ -226,6 +226,8 @@
 
                 </div>
             </div>
+            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+
         </div><!-- /.register-box -->
 
 

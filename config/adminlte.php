@@ -34,7 +34,7 @@ return [
 
     'logo_mini' => '<b>C</b>SGL',
 
-    'alternartivo_nome' => '<b>Câmara Municipal de Campo Mourão - PR</b>',
+    'alternartivo_nome' => '<b>Poder Legislativo de<br>Campo Mourão - Paraná</b>',
 
     /*
     |--------------------------------------------------------------------------
