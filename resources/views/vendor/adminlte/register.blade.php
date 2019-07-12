@@ -153,6 +153,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group has-feedback {{ $errors->has('sex') ? 'has-error' : '' }}">
+                                    <label for="InputSex">{{ trans('adminlte::adminlte.sex') }}</label>
                                     <select class="form-control" name="sex" id="sex">
                                         <option value="N">Sexo:</option>
                                         <option value="N">Não informado</option>
@@ -164,6 +165,7 @@
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group has-feedback {{ $errors->has('marital_status') ? 'has-error' : '' }}">
+                                    <label for="InputMaritalStatus">{{ trans('adminlte::adminlte.marital_status') }}</label>
                                     <select class="form-control" name="marital_status" id="marital_status">
                                         <option value="0">Estado Civil</option>
                                         <option value="0">Não informado</option>

@@ -12,6 +12,7 @@ return [
     'retype_password'             => 'Repita a senha',
     'birth_date'                  => 'Data de Nascimento',
     'sex'                         => 'Sexo',
+    'marital_status'              => 'Estado Civil',
     'image'                         => 'Imagem de Perfil',
     'remember_me'                 => 'Lembrar-me',
     'register'                    => 'Registrar',
