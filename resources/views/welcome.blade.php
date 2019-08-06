@@ -89,7 +89,7 @@
                     <img src="{{URL::asset('/assets/painel/img/brasao_campomourao.png')}}" alt="" class="img-responsive center-block" >
 
                     <strong>Câmara Municipal de Campo Mourão - PR</strong>
-{{--                    <p>Cotec<strong>SGL</strong></p>--}}
+                   <p>Portal da Intranet</p>
                 </div>
 
                 <div class="links">
