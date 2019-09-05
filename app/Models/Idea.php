@@ -33,6 +33,16 @@ class Idea extends Model
             'sector_id'         => 'required',
         ];
     }
+    public function rulesPublic($id = ''){
+        return [
+            'title'         => 'required|min:3|max:250',
+            'category_id'   => 'required',
+            'date'          => 'required',
+            'hour'          => 'required',
+            'description'   => 'required',
+            'tags'          => 'required',
+        ];
+    }
 
 
 

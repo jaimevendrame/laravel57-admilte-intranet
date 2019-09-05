@@ -46,8 +46,9 @@ class IdeaPublicController extends StandardController
     public function store(Request $request)
     {
 
+
         //valida os dados
-        $this->validate($request, $this->model->rules());
+        $this->validate($request, $this->model->rulesPublic());
         //pegar todos dados do formulário
         $dataForm = $request->all();
 
@@ -90,7 +91,7 @@ class IdeaPublicController extends StandardController
 
         if($insert)
             return redirect()
-                ->route("{$this->route}.public")
+                ->route("{$this->route}.index")
                 ->with(['success'=>'Cadastro realizado com sucesso!']);
         else
             return redirect()
@@ -132,7 +133,7 @@ class IdeaPublicController extends StandardController
     {
 
 
-        $this->validate($request, $this->model->rules($id));
+        $this->validate($request, $this->model->rulesPublic($id));
 
 
         $dataForm = $request->all();
