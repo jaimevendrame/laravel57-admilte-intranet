@@ -43,7 +43,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>E-mail</th>
-                    <th>Facebook</th>
+                    <th>Email Verificado</th>
                     <th>Twitter</th>
                     <th>GitHub</th>
                     <th width="150">Ações</th>
@@ -52,7 +52,7 @@
                     <tr>
                         <td>{{$data->name. " " .$data->last_name}}</td>
                         <td>{{$data->email}}</td>
-                        <td>{{$data->facebook}}</td>
+                        <td>{{$data->email_verified_at}}</td>
                         <td>{{$data->twitter}}</td>
                         <td>{{$data->github}}</td>
                         <td>
