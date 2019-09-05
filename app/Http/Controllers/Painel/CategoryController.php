@@ -13,6 +13,7 @@ class CategoryController extends StandardController
     protected $nameSmall = 'categoria';
     protected $upload = ['image'=> 'image', 'path' => 'categories'];
     protected $route = 'categorias';
+    protected $disk = 'public';
 
     public function __construct(Category $category)
     {

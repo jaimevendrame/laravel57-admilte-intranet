@@ -121,7 +121,7 @@ return [
         'address'               => 'endereço',
         'age'                   => 'idade',
         'body'                  => 'conteúdo',
-        'city'                  => 'cidade',
+        'city'                  => 'InputCidadeRes',
         'country'               => 'país',
         'date'                  => 'data',
         'day'                   => 'dia',
@@ -148,6 +148,12 @@ return [
         'title'                 => 'título',
         'username'              => 'usuário',
         'year'                  => 'ano',
+        'nr_protocolo'          => 'nº protocolo',
+        'date_protocolo'        => 'data protocolo',
+        'hour_protocolo'        => 'horário',
+        'image'                 => 'imagem',
+        'parlamentar_id'        => 'autor',
+        'user_id'               => 'usuário',
     ],
 
 ];

@@ -113,11 +113,48 @@ return [
 
     'menu' => [
         'MENU DE NAVEGAÇÃO',
+
         [
-            'text' => 'Usuários',
-            'url'  => 'painel/usuarios',
-            'icon' => 'id-card',
-            'can'  => 'users',
+            'text' => 'Pessoas',
+            'url'  => 'painel/pessoas',
+            'icon' => 'users',
+            'can'  => 'pessoas',
+        ],
+        [
+            'text'    => 'Gerenciamento',
+            'icon'    => 'gears',
+            'can'     => 'gestor',
+            'submenu' => [
+                [
+                    'text'    => 'Pessoas',
+                    'url'     => 'painel/pessoas',
+                    'icon' => 'users',
+                    'can'  => 'pessoas',
+                ],
+                [
+                    'text' => 'Usuários',
+                    'url'  => 'painel/usuarios',
+                    'icon' => 'id-card',
+                    'can'  => 'users',
+                ],
+                [
+                    'text' => 'Perfis',
+                    'url'  => 'painel/perfis',
+                    'icon' => 'check-square-o',
+                    'can'  => 'Admin',
+                ],
+                [
+                    'text' => 'Permissões',
+                    'url'  => 'painel/permissoes',
+                    'icon' => 'unlock',
+                    'can'  => 'Admin',
+                ],
+
+                [
+                    'text' => 'Level One',
+                    'url'  => '#',
+                ],
+            ],
         ],
         [
             'text' => 'Categorias',
@@ -138,18 +175,7 @@ return [
             'icon' => 'comments',
             'can'  => 'comments',
         ],
-        [
-            'text' => 'Perfis',
-            'url'  => 'painel/perfis',
-            'icon' => 'users',
-            'can'  => 'Admin',
-        ],
-        [
-            'text' => 'Permissões',
-            'url'  => 'painel/permissoes',
-            'icon' => 'unlock',
-            'can'  => 'Admin',
-        ],
+
         [
             'text' => 'Setores',
             'url'  => 'painel/sectors',

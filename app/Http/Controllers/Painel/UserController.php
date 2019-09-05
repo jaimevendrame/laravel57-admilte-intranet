@@ -19,6 +19,8 @@ class UserController extends StandardController
     protected $nameSmall = 'usuario';
     protected $upload = ['name'=> 'image', 'path' => 'users'];
     protected $route = 'usuarios';
+    protected $disk = 'public';
+
 
     public function __construct(User $user)
     {
@@ -82,7 +84,7 @@ class UserController extends StandardController
             //Definir no nome da imagem
             $nameFile = uniqid(date('YmdHis')).'.'.$image->getClientOriginalExtension();
 
-            $upload = $image->storeAs($this->upload['path'], $nameFile);
+            $upload = $image->storeAs($this->upload['path'], $nameFile, $this->disk ?? 'local');
 
             if ( $upload )
                 $dataForm[$this->upload['name']] = $nameFile;
@@ -188,7 +190,7 @@ class UserController extends StandardController
                 $nameImage = $data->image;
             }
 
-            $upload = $image->storeAs($this->upload['path'], $nameImage);
+            $upload = $image->storeAs($this->upload['path'], $nameImage, $this->disk ?? 'local');
 
 
             if ($upload )

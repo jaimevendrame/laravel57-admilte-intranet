@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-md-4">
                             @if(isset($data->image))
-                                <h4><strong>Anexo: </strong><a href="{{URL::asset('/assets/uploads/sumulas/'.$data->image)}}" target="_blank"><i class="fa fa-file-text fa-3x" aria-hidden="true"></i></a></h4>
+                                <h4><strong>Anexo: </strong><a href="/download/{{$dir="sumulas"}}/{{$data->image}}" target="_blank"><i class="fa fa-file-text fa-3x" aria-hidden="true"></i></a></h4>
                             @endif
                         </div>
                     </div>

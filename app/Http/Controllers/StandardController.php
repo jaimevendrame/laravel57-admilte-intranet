@@ -14,6 +14,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class StandardController extends BaseController
@@ -74,7 +75,7 @@ class StandardController extends BaseController
             //Definir no nome da imagem
             $nameFile = uniqid(date('YmdHis')).'.'.$image->getClientOriginalExtension();
 
-            $upload = $image->storeAs($this->upload['path'], $nameFile);
+            $upload = $image->storeAs($this->upload['path'], $nameFile,$this->disk ?? 'local');
 
             if ( $upload )
                 $dataForm[$this->upload['image']] = $nameFile;
@@ -168,7 +169,7 @@ class StandardController extends BaseController
 
             }
 
-            $upload = $image->storeAs($this->upload['path'], $nameImage);
+            $upload = $image->storeAs($this->upload['path'], $nameImage, $this->disk ?? 'local');
 
 
             if ($upload )
@@ -207,9 +208,16 @@ class StandardController extends BaseController
     {
 
         $data = $this->model->find($id);
+
         $delete = $data->delete();
 
         if ($delete) {
+
+
+            if  ($data['image'] != null ){
+                Storage::disk($this->disk ?? 'local')->delete("{$this->upload['path']}/{$data['image']}");
+            }
+            
             return redirect()
                 ->route("{$this->route}.index")
                 ->with(['success'=>"{$data->name} excluido com sucesso!"]);

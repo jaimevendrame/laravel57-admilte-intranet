@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestão de categorias')
+@section('title', 'Gestão de Pessoas')
 
 @section('content_header')
-    <h1>Gestão de categorias <small>{{$title}}</small></h1>
+    <h1>Gestão de pessoas <small>{{$title}}</small></h1>
 
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li><a href="#">Categorias</a></li>
+        <li><a href="#">Pessoas</a></li>
 
     </ol>
 @stop
@@ -16,10 +16,10 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('categorias.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVA CATEGORIA</a>
+                <a href="{{route('pessoas.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVA PESSOA</a>
             </h3>
             <div class="box-tools">
-                <form role="form" method="get" action="{{url('painel/categorias/pesquisar')}}" enctype="multipart/form-data">
+                <form role="form" method="get" action="{{url('painel/pessoas/pesquisar')}}" enctype="multipart/form-data">
                     {{--{{ csrf_field() }}--}}
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">
@@ -30,7 +30,6 @@
                 </form>
             </div>
         </div>
-
 
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
@@ -45,24 +44,26 @@
             @endif
             <table class="table table-hover">
                 <tr>
-                    <th>Nome</th>
-                    <th>URL</th>
-                    <th>Descrição</th>
+                    <th>Nome (Civil/Razão/Social)</th>
+                    <th>Tipo de Pessoa</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Status</th>
                     <th width="150">Ações</th>
                 </tr>
                 @forelse($datas as $data)
                     <tr>
-                        <td>{{$data->name}}</td>
-                        <td>{{$data->url}}</td>
-                        <td>{{$data->description}}</td>
+                        <td>{{$data->nome_razao}}</td>
+                        <td>{{$data->user->name. " ".$data->user->last_name}}</td>
+                        <td>{{$data->sigla_partido." (". $data->nome_partido.")"}}</td>
+                        <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
                         <td>
-                            <a href='{{route('categorias.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-                            <a href="{{route('categorias.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
+                            <a href='{{route('usuarios.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+                            <a href="{{route('usuarios.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     @empty
                     <div class="box-body">
-                        Nenhum categoria cadastrada
+                        Nenhum registro encontrado
                     </div>
                     @endforelse
             </table>

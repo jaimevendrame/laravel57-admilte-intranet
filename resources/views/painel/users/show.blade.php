@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-4">
                             @if(isset($data->image))
-                            <img src="{{URL::asset('/assets/uploads/users/'.$data->image)}}" alt="$user->image" class="img-responsive img-rounded img-bordered">
+                            <img src="{{ asset("storage/users/{$data->image}") }}" alt="{{$data->name ?? '' }}" class="img-responsive img-rounded img-bordered">
                             @endif
                         </div>
                     </div>

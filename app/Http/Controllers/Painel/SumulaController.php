@@ -53,16 +53,19 @@ class SumulaController extends StandardController
 
     public function store(Request $request)
     {
+
         //valida os dados
-        $this->validate($request, $this->model->rules());
+        $this->validate($request, $this->model->rules() );
+
+
+        dd($request);
+
+        // $this->validate->setAttributNames($this->model->atstributes());
         //pegar todos dados do formulário
         $dataForm = $request->all();
 
         //pegar usuário logado
         $dataForm[ 'user_id'] = auth()->user()->id;
-
-
-//        dd($dataForm);
 
 
         //Verificar se existe a imagem

@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestão de categorias')
+@section('title', 'Gestão de parlamentares')
 
 @section('content_header')
-    <h1>Gestão de categorias <small>{{$title}}</small></h1>
+    <h1>Gestão de parlamentares <small>{{$title}}</small></h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li><a href="#">Categorias</a></li>
+        <li><a href="#">Parlamentares</a></li>
 
     </ol>
 @stop
@@ -41,26 +41,27 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <h4><strong>Nome: </strong>{{$data->name}}</h4>
-                            <h4><strong>Url: </strong>{{$data->url}}</h4>
-                            <h4><strong>Descrição: </strong>{{$data->description}}</h4>
+                            <h4><strong>Nome: </strong>{{$data->user->name}}</h4>
+                            <h4><strong>Nome Parlamentar: </strong>{{$data->nome_parlamentar}}</h4>
+                            <h4><strong>Partido: </strong>{{$data->sigla_partido. " (".$data->nome_partido.")"}}</h4>
+                            <h4><strong>Status: </strong>{{$data->status == 'A'? 'ATIVO':'INATIVO'}}</h4>
                         </div>
                         <div class="col-md-4">
-                            @if(isset($data->image))
-                            <img src="{{ asset("storage/categories/{$data->image}") }}" alt="$user->image" class="img-responsive img-rounded img-bordered">
+                            @if(isset($data->user->image))
+                            <img src="{{URL::asset('/assets/uploads/users/'.$data->user->image)}}" alt="$user->image" class="img-responsive img-rounded img-bordered">
                             @endif
                         </div>
                     </div>
                 </div>
                 <!-- /.box-body -->
                 <!-- form start -->
-                <form role="form" method="post" action="{{route('categorias.destroy', $data->id)}}" >
+                <form role="form" method="post" action="{{route('parlamentares.destroy', $data->id)}}" >
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="box-footer">
                         <div class="form-group col-md-6">
                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Deletar</button>
-                            <a href="{{route('categorias.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
+                            <a href="{{route('parlamentares.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
                         </div>
                     </div>
                 </form>

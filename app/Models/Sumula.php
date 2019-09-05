@@ -27,11 +27,12 @@ class Sumula extends Model
             'date_protocolo'   => 'required|date',
             'hour_protocolo'   => 'required',
             'status'           =>'required|in:A,P,C,F',
-            'image'              => 'mimes:jpeg,png,jpg,zip,pdf|max:2048',
+            'image'            => 'mimes:jpeg,png,jpg,zip,pdf|max:2048',
             'parlamentar_id'   => 'required'
         ];
     }
 
+   
     public function parlamentar()
     {
         return $this->belongsTo(Parlamentar::class);

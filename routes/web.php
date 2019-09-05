@@ -72,6 +72,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Rotas para downlods de arquivos */
+Route::get("/download/{dir}/{file}", function ($dir="", $file="") {
+    return response()->download(storage_path("app/uploads/{$dir}/".$file));
+    });
 
 /****************************************************************************************
  * Rotas do Painel
@@ -157,7 +161,13 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], funct
     Route::post('/sumulas/pesquisar', 'Painel\SumulaController@search')->name('sumula.search');
     Route::resource('/sumulas', 'Painel\SumulaController');
 
+    //Pessoas
+    Route::post('/pessoas/pesquisar', 'Painel\PessoaController@search')->name('pessoa.search');
+    Route::resource('/pessoas', 'Painel\PessoaController');    
 
+
+
+    
 
 
     //Raiz painel

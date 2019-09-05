@@ -15,6 +15,8 @@ class PostController extends StandardController
     protected $nameSmall = 'Post';
     protected $upload = ['name'=> 'image', 'path' => 'posts'];
     protected $route = 'posts';
+    protected $disk = 'public';
+
 
     public function __construct(Post $post)
     {
@@ -62,7 +64,7 @@ class PostController extends StandardController
             //Definir no nome da imagem
             $nameFile = uniqid(date('YmdHis')).'.'.$image->getClientOriginalExtension();
 
-            $upload = $image->storeAs($this->upload['path'], $nameFile);
+            $upload = $image->storeAs($this->upload['path'], $nameFile,$this->disk ?? 'local');
 
             if ( $upload )
                 $dataForm[$this->upload['name']] = $nameFile;
@@ -129,7 +131,7 @@ class PostController extends StandardController
                 $nameImage = $data->image;
             }
 
-            $upload = $image->storeAs($this->upload['path'], $nameImage);
+            $upload = $image->storeAs($this->upload['path'], $nameImage, $this->disk ?? 'local');
 
 
             if ($upload )
