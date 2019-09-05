@@ -1,10 +1,9 @@
 {
-  "Verify Email Address" :"Verificar endereço de e-mai",
+  "Verify Email Address" :"Verificar endereço de e-mail",
   "Please click the button below to verify your email address." : "Por favor clique no botão abaixo para verificar o seu endereço de e-mail.",
   "If you did not create an account, no further action is required." : "Se você não criar uma conta, não é necessária nenhuma ação adicional.",
-  "Hello" : "Olá",
+  "Hello!" : "Olá!",
   "Regards" : "Saudações",
-  "If you’re having trouble clicking the" : "Se você está tendo problemas de clicar no botão",
-  "button, copy and paste the URL below" : "copie e cole o URL abaixo",
-  "into your web browser:" : "no seu navegador web:"
+  "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n" : "Se você está tendo problemas de clicar no botão \":actionText\" copie e cole o URL abaixo" ,
+  "into your web browser: [:actionURL](:actionURL)" : "no seu navegador web: [:actionURL](:actionURL)"
 }
