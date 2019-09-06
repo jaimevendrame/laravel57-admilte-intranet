@@ -58,7 +58,6 @@ class SumulaController extends StandardController
         $this->validate($request, $this->model->rules() );
 
 
-        dd($request);
 
         // $this->validate->setAttributNames($this->model->atstributes());
         //pegar todos dados do formulário
