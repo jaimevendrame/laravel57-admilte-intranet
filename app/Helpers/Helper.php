@@ -49,6 +49,55 @@ class Helper
         }
         
     }
+    public static function mask_cpf_cnpj($val)
+    {
+        $mask_cnpj = '##.###.###/####-##';
+        $mask_cpf = '###.###.###-##';
+        $val_length = strlen($val);
+
+        $maskared = '';
+        $k = 0;
+        if($val != ""){
+
+            if ($val_length > 11 ){
+                for($i = 0; $i<=strlen($mask_cnpj)-1; $i++)
+                {
+                    if($mask_cnpj[$i] == '#')
+                    {
+                        if(isset($val[$k]))
+                            $maskared .= $val[$k++];
+                    }
+                    else
+                    {
+                        if(isset($mask_cnpj[$i]))
+                            $maskared .= $mask_cnpj[$i];
+                    }
+                }
+                return $maskared;
+            } else {
+                for($i = 0; $i<=strlen($mask_cpf)-1; $i++)
+                {
+                    if($mask_cpf[$i] == '#')
+                    {
+                        if(isset($val[$k]))
+                            $maskared .= $val[$k++];
+                    }
+                    else
+                    {
+                        if(isset($mask_cpf[$i]))
+                            $maskared .= $mask_cpf[$i];
+                    }
+                }
+                return $maskared;
+            }
+
+
+
+        } else {
+            return "";
+        }
+
+    }
 
     public static function returnDataFim($date_start, $days)
     {

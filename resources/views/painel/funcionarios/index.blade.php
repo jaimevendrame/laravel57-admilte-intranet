@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestão de Pessoas')
+@section('title', 'Gestão de Funcionários')
 
 @section('content_header')
-    <h1>Gestão de pessoas <small>{{$title}}</small></h1>
+    <h1>Gestão de funcionários <small>{{$title}}</small></h1>
 
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li><a href="#">Pessoas</a></li>
+        <li><a href="#">Funcionários</a></li>
 
     </ol>
 @stop
@@ -16,10 +16,10 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">
-                <a href="{{route('pessoas.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVA PESSOA</a>
+                <a href="{{route('funcionarios.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVO FUNCIONÁRIO</a>
             </h3>
             <div class="box-tools">
-                <form role="form" method="get" action="{{url('painel/pessoas/pesquisar')}}" enctype="multipart/form-data">
+                <form role="form" method="get" action="{{url('painel/funcionarios/pesquisar')}}" enctype="multipart/form-data">
                     {{--{{ csrf_field() }}--}}
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">
@@ -44,26 +44,28 @@
             @endif
             <table class="table table-hover">
                 <tr>
-                    <th>Nome (Civil/Razão/Social)</th>
-                    <th>Tipo de Pessoa</th>
-                    <th>CPF/CNPJ</th>
+                    <th>Nome</th>
+                    <th>Setor</th>
+                    <th>Cargo</th>
+                    <th>Ramal</th>
                     <th>Status</th>
                     <th width="150">Ações</th>
                 </tr>
                 @forelse($datas as $data)
                     <tr>
-                        <td>{{Helper::shout($data->nome_razao)}}{{$data->tipo_pessoa == 1 ? Helper::shout(" (".$data->sobrenome_fantasia.")") : Helper::shout(" ".$data->sobrenome_fantasia) }}</td>
-                        <td>{{Helper::mask_cpf_cnpj($data->cpf_cnpj) }}</td>
-                        <td>{{$data->tipo_pessoa == 0 ? 'Pessoa Física':'Pessoa Jurídica'}}</td>
+                        <td>{{$data->pessoa->nome_razao. " " .$data->pessoa->sobrenome_fantasia}}</td>
+                        <td>{{$data->sector->name}}</td>
+                        <td>{{$data->cargo}}</td>
+                        <td>{{$data->ramal}}</td>
                         <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
                         <td>
-                            <a href='{{route('pessoas.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-                            <a href="{{route('pessoas.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
+                            <a href='{{route('funcionarios.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+                            <a href="{{route('funcionarios.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     @empty
                     <div class="box-body">
-                        Nenhum registro encontrado
+                        Nenhum funcionário cadastrado
                     </div>
                     @endforelse
             </table>

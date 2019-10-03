@@ -16,6 +16,10 @@ function checkRadio(name) {
 
         document.getElementById('LabelBirthDate').innerText ="Data Nascimento";
 
+        document.getElementById("sexo").style.visibility = "visible";
+
+        document.getElementById("div_marital_status").style.visibility = "visible";
+
 
     } else if (name == "pj"){
         console.log("Choice: ", name);
@@ -34,6 +38,11 @@ function checkRadio(name) {
         document.getElementById('InputRG').placeholder ="IE - Inscrição Estadual";
 
         document.getElementById('LabelBirthDate').innerText ="Data Fundação";
+
+        document.getElementById("sexo").style.visibility = "hidden";
+
+        document.getElementById("div_marital_status").style.visibility = "hidden";
+
 
 
     }

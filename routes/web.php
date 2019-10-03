@@ -163,11 +163,13 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], funct
 
     //Pessoas
     Route::post('/pessoas/pesquisar', 'Painel\PessoaController@search')->name('pessoa.search');
-    Route::resource('/pessoas', 'Painel\PessoaController');    
+    Route::resource('/pessoas', 'Painel\PessoaController');
 
 
+//Funcionarios
+    Route::any('/funcionarios/pesquisar', 'Painel\FuncionarioController@search')->name('funcionario.search');
+    Route::resource('/funcionarios', 'Painel\FuncionarioController');
 
-    
 
 
     //Raiz painel

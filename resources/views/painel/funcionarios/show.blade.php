@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestão de pessoas')
+@section('title', 'Gestão de funcionários')
 
 @section('content_header')
-    <h1>Gestão de pessoas <small>{{$title}}</small></h1>
+    <h1>Gestão de funcionários <small>{{$title}}</small></h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li><a href="#">Pessoas</a></li>
+        <li><a href="#">Funcionários</a></li>
 
     </ol>
 @stop
@@ -41,29 +41,27 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <h4><strong>Nome: </strong>
-                                {{Helper::shout($data->nome_razao)}}{{$data->tipo_pessoa == 1 ? Helper::shout(" (".$data->sobrenome_fantasia.")") : Helper::shout(" ".$data->sobrenome_fantasia) }}
-                            </h4>
-                            <h4><strong>CPF_CNPJ: </strong>{{Helper::mask_cpf_cnpj($data->cpf_cnpj) }}</h4>
-                            <h4><strong>RG_IE: </strong>{{$data->rg_ie}}</h4>
-                            <h4><strong>Tipo de Pessoa: </strong>{{$data->tipo_pessoa == 0 ? 'Pessoa Física':'Pessoa Jurídica'}}</h4>
+                            <h4><strong>Nome: </strong>{{$data->pessoa->nome_razao. " " . $data->pessoa->sobrenome_fantasia}}</h4>
+                            <h4><strong>Cargo: </strong>{{$data->cargo}}</h4>
+                            <h4><strong>Setor: </strong>{{$data->sector->name}}</h4>
+                            <h4><strong>Status: </strong>{{$data->status == 'A'? 'ATIVO':'INATIVO'}}</h4>
                         </div>
                         <div class="col-md-4">
-                            @if(isset($data->image))
-                                <img src="{{asset('storage/pessoas/'.$data->image)}}" alt="$user->image" class="img-responsive img-rounded img-bordered">
+                            @if(isset($data->user->image))
+                            <img src="{{asset('/storage/pessoas/'.$data->pessoa->image)}}" alt="{{$data->pessoa->nome_razao}}" class="img-responsive img-rounded img-bordered">
                             @endif
                         </div>
                     </div>
                 </div>
                 <!-- /.box-body -->
                 <!-- form start -->
-                <form role="form" method="post" action="{{route('pessoas.destroy', $data->id)}}" >
+                <form role="form" method="post" action="{{route('funcionarios.destroy', $data->id)}}" >
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="box-footer">
                         <div class="form-group col-md-6">
                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Deletar</button>
-                            <a href="{{route('pessoas.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
+                            <a href="{{route('funcionarios.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
                         </div>
                     </div>
                 </form>

@@ -121,6 +121,12 @@ return [
             'can'  => 'pessoas',
         ],
         [
+            'text' => 'Funcionários',
+            'url'  => 'painel/funcionarios',
+            'icon' => 'user',
+            'can'  => 'funcionarios',
+        ],
+        [
             'text'    => 'Gerenciamento',
             'icon'    => 'gears',
             'can'     => 'gestor',

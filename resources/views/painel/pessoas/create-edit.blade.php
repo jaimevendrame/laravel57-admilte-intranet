@@ -48,13 +48,13 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="form-group col-md-9 col-sm-12">
-                                <label class="col-md-2">
-                                    <input type="radio" name="pf" class="minimal" checked onclick="checkRadio('pf')">
+                                <label class="col-md-3">
+                                    <input id="radio_pf" type="radio" name="tipo_pessoa" class="minimal"  {{ old('tipo_pessoa') == 0 ? 'checked': '' }} onclick="checkRadio('pf')" value="0" >
                                     Pessoal Física
                                 </label>
 
                                 <label>
-                                    <input type="radio" name="pf" class="minimal" onclick="checkRadio('pj')">
+                                    <input id="radio_pj" type="radio" name="tipo_pessoa" class="minimal" {{ old('tipo_pessoa') == 1 ? 'checked': '' }} onclick="checkRadio('pj')" value="1">
                                     Pessoal Jurídica
                                 </label>
                             </div>
@@ -105,7 +105,7 @@
                                 <option value="F">Feminino</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" id="div_marital_status">
                             <label>Estado Civil:</label>
                             <select class="form-control" name="marital_status" id="marital_status">
                                 <option value="0">Não informado</option>
@@ -172,7 +172,7 @@
                                                             <div class="form-group">
                                                                 <label for="InputNumeroRes" class="col-sm-2 control-label">Número</label>
                                                                 <div class="col-md-2">
-                                                                    <input type="text" class="form-control" id="InputNumeroRes" name="lougradouro_res" placeholder="Número" value="{{$data->numero_res ?? old('numero_res')}}">
+                                                                    <input type="text" class="form-control" id="InputNumeroRes" name="numero_res" placeholder="Número" value="{{$data->numero_res ?? old('numero_res')}}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -383,8 +383,38 @@
                                     </div>
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane" id="diversos">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="featured" @if(isset($data)&& $data->featured == 1) checked @endif> Destaque?
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="colaborador" @if(isset($data)&& $data->colaborador == 1) checked @endif> Colaborador?
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="fornecedor" @if(isset($data)&& $data->fornecedor == 1) checked @endif> Fornecedor?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="InputFile">Imagem Principal</label>
+                                                <input type="file" id="InputFile" name="image">
 
-
+                                                <p class="help-block">Utlize um imagem de no máximo 2 MB.</p>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                @if (isset($data->image))
+                                                    <img src="{{ asset("storage/pessoas/{$data->image}") }}" alt="{{$data->name ?? '' }}" class="img-responsive img-rounded img-bordered">
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- /.tab-pane -->
 
@@ -405,8 +435,7 @@
                         <div class="form-group col-md-4">
                             <button type="submit" class="btn btn-success">Enviar</button>
                             <button type="reset" class="btn btn-danger">Limpar</button>
-                            <a href="{{route('parlamentares.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
-
+                            <a href="{{route('pessoas.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
                         </div>
                     </div>
                 </form>
@@ -419,25 +448,45 @@
 
     $(document).ready(function() {
 
-        $('.cpf').mask('000.000.000-00');
+        // $('.cpf').mask('000.000.000-00');
         $('.cep').mask('00.000-000');
         $('.fone').mask('(00) 0000-0000');
         $('.cell').mask('(00) 00000-0000');
 
-        $('.user_parlamentar').select2(
-            {
-                placeholder : 'Digite nome do usuário',
-                language : {
-                    noResults :  function ( params ) {
-                        return  " Nenhum resultado encontrado. " ;
-                    }
-                },
-            }
+        var cpfMascara = function (val) {
+                return val.replace(/\D/g, '').length > 11 ? '00.000.000/0000-00' : '000.000.000-009';
+            },
+            cpfOptions = {
+                onKeyPress: function(val, e, field, options) {
+                    field.mask(cpfMascara.apply({}, arguments), options);
+                }
+            };
+        $('.cpf').mask(cpfMascara, cpfOptions);
+        @if (isset($data['tipo_pessoa']))
+        document.getElementById("radio_pf").disabled = true;
+        document.getElementById("radio_pj").disabled = true;
 
-        );
+        @if($data['tipo_pessoa'] == 0)
+        document.getElementById("radio_pf").checked = true;
+        checkRadio('pf');
+        @else
+        document.getElementById("radio_pj").checked = true;
+        checkRadio('pj');
+                @endif
+                @endif
+
+        var checkedPF = document.getElementById("radio_pf").checked;
+        if ( checkedPF ){
+            checkRadio('pf');
+        } else {
+            checkRadio('pj');
+        }
+
     });
 
 </script>
+
+
 
 <script type="text/javascript" src="{{url('assets/js/jquery.mask.js')}}"></script>
 <script type="text/javascript" src="{{url('assets/js/cep.js')}}"></script>
