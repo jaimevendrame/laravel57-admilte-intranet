@@ -36,6 +36,7 @@ class PessoaController extends StandardController
     public function store(Request $request)
     {
 
+
         //Converte data DD/MM/YYY para YYYY-MM-DD
         $origDate = $request['birth_date_fundacao'];
 
@@ -75,6 +76,8 @@ class PessoaController extends StandardController
         $this->validate($request, $this->model->rules());
         //pegar todos dados do formulário
         $dataForm = $request->all();
+
+//        dd($dataForm);
 
         //Verificar se existe a imagem
         if ( $this->upload && $request->hasFile($this->upload['name'])){

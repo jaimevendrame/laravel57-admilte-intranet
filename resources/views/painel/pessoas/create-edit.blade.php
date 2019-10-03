@@ -100,22 +100,22 @@
                         <div id="sexo" class="form-group col-md-4">
                             <label>Sexo:</label>
                             <select class="form-control" name="sex" id="sex">
-                                <option value="N">Não informado</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Feminino</option>
+                                <option value="N" @if( isset($data['sex'])) {{$data['sex'] == 'N'? 'selected':''}}@endif>Não informado</option>
+                                <option value="M" @if( isset($data['sex'])) {{$data['sex'] == 'M'? 'selected':''}}@endif>Masculino</option>
+                                <option value="F" @if( isset($data['sex'])) {{$data['sex'] == 'F'? 'selected':''}}@endif>Feminino</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4" id="div_marital_status">
                             <label>Estado Civil:</label>
                             <select class="form-control" name="marital_status" id="marital_status">
-                                <option value="0">Não informado</option>
-                                <option value="1">Solteiro(a)</option>
-                                <option value="2">Casado(a)</option>
-                                <option value="3">Desquitado(a)/Separado(a)</option>
-                                <option value="7">Divorciado(a)</option>
-                                <option value="4">Viúvo(a)</option>
-                                <option value="5">União estável</option>
-                                <option value="6">Outros</option>
+                                <option value="0" @if( isset($data['marital_status'])) {{$data['marital_status'] == '0'? 'selected':''}}@endif>Não informado</option>
+                                <option value="1" @if( isset($data['marital_status'])) {{$data['marital_status'] == '1'? 'selected':''}}@endif>Solteiro(a)</option>
+                                <option value="2" @if( isset($data['marital_status'])) {{$data['marital_status'] == '2'? 'selected':''}}@endif>Casado(a)</option>
+                                <option value="3" @if( isset($data['marital_status'])) {{$data['marital_status'] == '3'? 'selected':''}}@endif>Desquitado(a)/Separado(a)</option>
+                                <option value="7" @if( isset($data['marital_status'])) {{$data['marital_status'] == '7'? 'selected':''}}@endif>Divorciado(a)</option>
+                                <option value="4" @if( isset($data['marital_status'])) {{$data['marital_status'] == '4'? 'selected':''}}@endif>Viúvo(a)</option>
+                                <option value="5" @if( isset($data['marital_status'])) {{$data['marital_status'] == '5'? 'selected':''}}@endif>União estável</option>
+                                <option value="6" @if( isset($data['marital_status'])) {{$data['marital_status'] == '6'? 'selected':''}}@endif>Outros</option>
                             </select>
                         </div>
 
