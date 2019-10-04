@@ -281,7 +281,7 @@ class UserController extends StandardController
                 $nameImage = $data->image;
             }
 
-            $upload = $image->storeAs($this->upload['path'], $nameImage);
+            $upload = $image->storeAs($this->upload['path'], $nameImage, $this->disk ?? 'local');
 
 
             if ($upload )

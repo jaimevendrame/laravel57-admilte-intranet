@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="row">
-                                @if(isset($data->image))
+                                @if(($data->image !=""))
                                     <img src="{{asset('/storage/users/'.$data->image)}}" alt="$user->image" class="img-responsive img-circle img-bordered center-block" style="width: 50%;">
                                 @endif
                             </div>
