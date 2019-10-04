@@ -45,8 +45,8 @@
             <table class="table table-hover">
                 <tr>
                     <th>Nome (Civil/Razão/Social)</th>
-                    <th>Tipo de Pessoa</th>
                     <th>CPF/CNPJ</th>
+                    <th>Tipo de Pessoa</th>
                     <th>Status</th>
                     <th width="150">Ações</th>
                 </tr>

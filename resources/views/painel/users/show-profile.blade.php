@@ -42,7 +42,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 @if(isset($data->image))
-                                    <img src="{{URL::asset('/assets/uploads/users/'.$data->image)}}" alt="$user->image" class="img-responsive img-circle img-bordered center-block" style="width: 50%;">
+                                    <img src="{{asset('/storage/users/'.$data->image)}}" alt="$user->image" class="img-responsive img-circle img-bordered center-block" style="width: 50%;">
                                 @endif
                             </div>
                             <div class="row text-center">

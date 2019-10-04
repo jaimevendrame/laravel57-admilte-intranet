@@ -85,8 +85,8 @@
                                 @if(Auth::check())
 {{--                                    {{ Auth::user()->name }}--}}
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    @if( auth()->user()->image != '' && file_exists(public_path('assets/uploads/users/'. auth()->user()->image)))
-                                    <img src="{{URL::asset('/assets/uploads/users/'. auth()->user()->image)}}" alt="{{ auth()->user()->name}}" class="user-image img-circle img-responsive">
+                                    @if( auth()->user()->image != '' && file_exists(public_path('storage/users/'. auth()->user()->image)))
+                                    <img src="{{asset('/storage/users/'. auth()->user()->image)}}" alt="{{ auth()->user()->name}}" class="user-image img-circle img-responsive">
                                     {{auth()->user()->name}} <span class="caret"></span></a>
                                     @else
                                     <img src="{{URL::asset('/assets/uploads/users/no-image.png')}}" alt="{{ auth()->user()->name}}" class="user-image img-circle img-responsive">
