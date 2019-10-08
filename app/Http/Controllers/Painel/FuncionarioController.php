@@ -37,7 +37,7 @@ class FuncionarioController extends StandardController
 
         $pessoas = Pessoa::where('colaborador',true)->whereNotIn('id', $funcionarios)->get();
 
-//        dd($resultado);
+//        dd($pessoas);
 
         $sectores = Sector::get();
 
@@ -51,11 +51,13 @@ class FuncionarioController extends StandardController
 
         $data = $this->model->find($id);
 
-        $funcionarios = $this->model->pluck('pessoa_id')->toArray();
+//        $funcionarios = $this->model->pluck('pessoa_id')->toArray();
 
 //        dd($funcionarios);
 
-        $pessoas = Pessoa::where('colaborador',true)->whereNotIn('id', $funcionarios)->get();
+//        $pessoas = Pessoa::where('colaborador',true)->whereNotIn('id', $funcionarios)->get();
+
+        $pessoas = Pessoa::where('colaborador',true)->get();
 
 //        dd($resultado);
 
@@ -85,4 +87,6 @@ class FuncionarioController extends StandardController
 
         return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
     }
+
+
 }

@@ -208,4 +208,19 @@ class PessoaController extends StandardController
                 ->withInput();
     }
 
+    public function search(Request $request)
+    {
+        //Recupera os dados do formulário
+        $dataForm = $request->get('pesquisa');
+
+        $title = "Listagem {$this->nameSmall}";
+
+        //Filtra os usuários
+        $datas = $this->model
+            ->where('nome_razao', 'LIKE', "%{$dataForm}%")
+            ->paginate($this->totalPage);
+
+        return view("{$this->view}.index", compact('datas', 'dataForm', 'title'));
+    }
+
 }

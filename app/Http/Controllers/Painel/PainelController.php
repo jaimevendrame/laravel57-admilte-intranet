@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Painel;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Funcionario;
 use App\Models\Idea;
 use App\Models\Permission;
 use App\Models\Post;
 use App\Models\Profile;
 use App\Models\Sumula;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Response;
 
 class PainelController extends Controller
 {
@@ -48,5 +51,28 @@ class PainelController extends Controller
             )
         );
     }
+
+    public function agenda()
+    {
+        $datas = Funcionario::get();
+
+        $title = "Agenda";
+
+        return view("painel.agenda.index", compact('title', 'datas'));
+    }
+
+
+    public function show($id)
+    {
+        $agenda = Funcionario::
+            select(['funcionarios.*','pessoas.*', 'pessoas.id as id_pessoa'])
+            ->join('pessoas','funcionarios.pessoa_id', 'pessoas.id')
+            ->find($id);
+
+        $agenda['birth_date_fundacao'] = date("d/m", strtotime($agenda['birth_date_fundacao']));
+
+        return Response::json($agenda);
+    }
+
 
 }

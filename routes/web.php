@@ -81,6 +81,13 @@ Route::get("/download/{dir}/{file}", function ($dir="", $file="") {
  * Rotas do Painel
 ****************************************************************************************/
 Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], function (){
+
+    //Agenda
+    Route::get('/agenda', 'Painel\PainelController@agenda')->name('agenda.index');
+    Route::get('/agenda/show/{id}', 'Painel\PainelController@show')->name('agenda.show');
+
+
+
     //Usuários
     Route::any('/usuario/{id}/perfis/pesquisar', 'Painel\UserController@searchProfile')->name('user.profiles.search');
     Route::get('/usuario/{id}/perfis/{profileid}/delete', 'Painel\UserController@deleteProfile')->name('user.profile.delete');
@@ -162,14 +169,13 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], funct
     Route::resource('/sumulas', 'Painel\SumulaController');
 
     //Pessoas
-    Route::post('/pessoas/pesquisar', 'Painel\PessoaController@search')->name('pessoa.search');
+    Route::any('/pessoas/pesquisar', 'Painel\PessoaController@search')->name('pessoa.search');
     Route::resource('/pessoas', 'Painel\PessoaController');
 
 
 //Funcionarios
     Route::any('/funcionarios/pesquisar', 'Painel\FuncionarioController@search')->name('funcionario.search');
     Route::resource('/funcionarios', 'Painel\FuncionarioController');
-
 
 
     //Raiz painel
