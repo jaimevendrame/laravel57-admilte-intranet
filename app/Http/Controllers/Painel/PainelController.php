@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Funcionario;
 use App\Models\Idea;
 use App\Models\Permission;
+use App\Models\Pessoa;
 use App\Models\Post;
 use App\Models\Profile;
 use App\Models\Sumula;
@@ -35,6 +36,7 @@ class PainelController extends Controller
         $totalPermissions = Permission::count();
         $totalSumulas = Sumula::count();
         $totalIdeas = Idea::count();
+        $niver = $this->returnNiver();
 
 
 
@@ -47,7 +49,8 @@ class PainelController extends Controller
                 'totalProfiles',
                 'totalPermissions',
                 'totalSumulas',
-                'totalIdeas'
+                'totalIdeas',
+                'niver'
             )
         );
     }
@@ -74,5 +77,16 @@ class PainelController extends Controller
         return Response::json($agenda);
     }
 
+
+    public function returnNiver()
+    {
+
+        $data = Funcionario::
+            select(['funcionarios.*','pessoas.*', 'pessoas.id as id_pessoa'])
+            ->join('pessoas','funcionarios.pessoa_id', 'pessoas.id')
+            ->whereMonth('birth_date_fundacao', Carbon::now()->month)->get();
+
+    return $data;
+    }
 
 }
