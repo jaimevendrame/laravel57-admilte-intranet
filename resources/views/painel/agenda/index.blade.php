@@ -43,7 +43,7 @@
                         @forelse($datas as $data)
                         <tr>
                             <td>{{ Helper::shout( $data->pessoa->nome_razao. " " .$data->pessoa->sobrenome_fantasia) }}</td>
-                            <td>{{ $data->sector->label }}</td>
+                            <td>{{ $data->sector->name }}</td>
                             <td>{{ $data->ramal }}</td>
 
                             <td>
