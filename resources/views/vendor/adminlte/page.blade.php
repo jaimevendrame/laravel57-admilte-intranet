@@ -96,8 +96,8 @@
 
                             <ul class="dropdown-menu user-body">
                                 <li><a href="{{route('profile.show')}}">Perfil</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li><a href="{{route('agenda.index')}}">Agenda</a></li>
+{{--                                <li><a href="#">Something else here</a></li>--}}
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"> <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }} </a>

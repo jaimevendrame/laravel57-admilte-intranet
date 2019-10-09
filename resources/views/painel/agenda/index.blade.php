@@ -82,53 +82,40 @@
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ramal</h4>
-                </div>
+            <div class="modal-content bg-gray-light ">
+{{--                <div class="modal-header">--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+{{--                    <h4 class="modal-title" id="myModalLabel">Ramal</h4>--}}
+{{--                </div>--}}
                 <div class="modal-body">
-                    <form id="modalFormData" name="modalFormData" class="form-horizontal" novalidate="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="box box-widget widget-user-2">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-light-blue-gradient">
+                                    <div class="widget-user-image" >
 
-                        <div class="form-group">
-                            <label for="nome" class="col-sm-2 control-label">Nome </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nome" name="nome">
-                            </div>
-                        </div>
+                                        <img class="img-circle" src="{{asset('storage/imgs/avatar.png')}}" alt="User Avatar" id="_image" style="width: 65px !important; height: 65px !important;">
+                                    </div>
+                                    <!-- /.widget-user-image -->
+                                    <h3 class="widget-user-username" id="_nome"></h3>
+                                    <h5 class="widget-user-desc" id="_ramal"></h5>
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <ul class="nav nav-stacked">
+                                        <li><a href="#">Email <span class="pull-right text-bold" id="_email">...</span></a></li>
+                                        <li><a href="#">Telefone <span class="pull-right text-bold" id="_telefone">...</span></a></li>
+                                        <li><a href="#">Celular 1 <span class="pull-right text-bold" id="_cell1">...</span></a></li>
+                                        <li><a href="#">Celular 2 <span class="pull-right text-bold" id="_cell2">...</span></a></li>
+                                        <li><a href="#">Aniversário <span class="pull-right text-bold" id="_niver">...</span></a></li>
 
-                        <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Email </label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="email" name="email">
+                                    </ul>
+                                </div>
                             </div>
+                            <!-- /.widget-user -->
                         </div>
-
-                        <div class="form-group">
-                            <label for="niver" class="col-sm-2 control-label">Aniversário </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="niver" name="niver">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fone_principal" class="col-sm-2 control-label">Telefone Principal </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fone_principal" name="fone_principal">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fone_cell1" class="col-sm-2 control-label">Celular 1 </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fone_cell1" name="fone_cell1">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fone_cell2" class="col-sm-2 control-label">Celular 2 </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fone_cell2" name="fone_cell2">
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -186,17 +173,19 @@ $(document).ready(function() {
 
            $.getJSON(url, function (data) {
 
-               document.getElementById("myModalLabel").innerHTML = "Ramal "+data.ramal;
-               // jQuery('#myModalLabel').innerHTML(data.ramal);
+               document.getElementById("_ramal").innerHTML = "Ramal: "+data.ramal;
+               document.getElementById("_nome").innerHTML = ""+data.nome_razao+ " "+data.sobrenome_fantasia;
+               document.getElementById("_email").innerHTML = data.email;
+               document.getElementById("_telefone").innerHTML = data.fone_principal;
+               document.getElementById("_cell1").innerHTML = data.fone_cell_1;
+               document.getElementById("_cell2").innerHTML = data.fone_cell_2;
+               document.getElementById("_niver").innerHTML = data.birth_date_fundacao;
+               if(data.image != null){
+                   document.getElementById("_image").src = '/storage/pessoas/'+data.image+'';
+               } else {
+                   document.getElementById("_image").src = "{{URL::asset('/assets/uploads/users/no-image.png')}}";
 
-               jQuery('#nome').val(data.nome_razao+ " "+data.sobrenome_fantasia);
-               jQuery('#niver').val(data.birth_date_fundacao);
-               jQuery('#email').val(data.email);
-               jQuery('#fone_principal').val(data.fone_principal);
-               jQuery('#fone_cell1').val(data.fone_cell_1);
-               jQuery('#fone_cell2').val(data.fone_cell_2);
-
-
+               }
 
            });
 

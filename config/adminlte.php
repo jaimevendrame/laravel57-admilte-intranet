@@ -113,6 +113,12 @@ return [
 
     'menu' => [
         'MENU DE NAVEGAÇÃO',
+        [
+            'text' => 'Agenda',
+            'url'  => 'painel/agenda',
+            'icon' => 'id-badge',
+            'can'  => 'view_painel',
+        ],
 
         [
             'text' => 'Pessoas',
