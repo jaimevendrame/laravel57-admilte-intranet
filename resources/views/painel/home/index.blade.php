@@ -160,11 +160,16 @@
                     <div class="alert alert-info alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4><i class="icon fa fa-birthday-cake"></i> Aniversariantes do mês!</h4>
-                        @forelse($niver as $d)
-                        <p>{{$d->nome_razao}}</p>
+                        <ul class="nav nav-stacked">
+                            @forelse($niver as $d)
+                            <li><a href="#">{{$d->nome_razao." ". $d->sobrenome_fantasia}} <span class="pull-right text-bold">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span></a></li>
                             @empty
-                        <p>Sem niver </p>
+                                <p>Sem niver </p>
                             @endforelse
+                        </ul>
+
+
+
                     </div>
 {{--                    <div class="alert alert-warning alert-dismissible">--}}
 {{--                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
