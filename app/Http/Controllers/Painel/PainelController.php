@@ -84,7 +84,9 @@ class PainelController extends Controller
         $data = Funcionario::
             select(['funcionarios.*','pessoas.*', 'pessoas.id as id_pessoa'])
             ->join('pessoas','funcionarios.pessoa_id', 'pessoas.id')
-            ->whereMonth('birth_date_fundacao', Carbon::now()->month)->get();
+            ->whereMonth('birth_date_fundacao', Carbon::now()->month)
+            ->orderby('birth_date_fundacao', 'asc')
+            ->get();
 
     return $data;
     }
