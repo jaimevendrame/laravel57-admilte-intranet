@@ -14,6 +14,7 @@ use App\Models\Profile;
 use App\Models\Sumula;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class PainelController extends Controller
@@ -85,7 +86,7 @@ class PainelController extends Controller
             select(['funcionarios.*','pessoas.*', 'pessoas.id as id_pessoa'])
             ->join('pessoas','funcionarios.pessoa_id', 'pessoas.id')
             ->whereMonth('birth_date_fundacao', Carbon::now()->month)
-            ->orderby('birth_date_fundacao', 'desc')
+            ->orderbyRaw("DAY (birth_date_fundacao)", 'desc')
             ->get();
 
     return $data;
