@@ -58,7 +58,7 @@
                         <td>{{$data->sector->name}}</td>
                         <td>{{$data->cargo}}</td>
                         <td>{{$data->ramal}}</td>
-                        <td>{{$data->pessoa->user_id  ? 'ok' : 'fail'}}</td>
+                        <td>{{$data->pessoa->user_id !="" ? 'ok' : 'fail'}}</td>
                         <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
                         <td>
                             <a href='{{route('funcionarios.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
