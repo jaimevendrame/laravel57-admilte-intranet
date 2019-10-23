@@ -44,6 +44,7 @@
                             <h4><strong>Nome: </strong>{{$data->pessoa->nome_razao. " " . $data->pessoa->sobrenome_fantasia}}</h4>
                             <h4><strong>Cargo: </strong>{{$data->cargo}}</h4>
                             <h4><strong>Setor: </strong>{{$data->sector->name}}</h4>
+                            <h4><strong>Email Principal: </strong>{{$data->pessoa->email}}</h4>
                             <h4><strong>Status: </strong>{{$data->status == 'A'? 'ATIVO':'INATIVO'}}</h4>
                         </div>
                         <div class="col-md-4">
