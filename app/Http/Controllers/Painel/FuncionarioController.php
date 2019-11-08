@@ -9,6 +9,8 @@ use App\Models\Sector;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Mime\RawMessage;
 
 class FuncionarioController extends StandardController
 {
@@ -111,7 +113,14 @@ class FuncionarioController extends StandardController
 
         $pessoa = Pessoa::find($pessoa_id);
 
-        $users = User::get();
+
+
+        $users=DB::table('users')
+            ->whereNotIn('id',function ($query) {
+                $query->select('user_id')->from('pessoas')
+                    ->Where('user_id','<>',null);
+            })
+            ->get();
 
         $title = "Adicionar usuários a pessoa: {$pessoa->nome_razao} {$pessoa->sobrenome_fantasia}";
 
@@ -185,11 +194,11 @@ class FuncionarioController extends StandardController
 
         if($insert)
             return redirect()
-                ->route("funcionario.users.add")
+                ->route("funcionario.users.add", $id)
                 ->with(['success'=>'Cadastro realizado com sucesso!']);
         else
             return redirect()
-                ->route("funcionario.users.add")
+                ->route("funcionario.users.add", $id)
                 ->withErrors(['errors' => 'Falha ao cadastrar'])
                 ->withInput();
 
