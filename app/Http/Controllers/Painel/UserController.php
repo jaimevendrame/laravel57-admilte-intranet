@@ -42,6 +42,7 @@ class UserController extends StandardController
 
         $title = "Listagem {$this->nameSmall}";
 
+
         return view("{$this->view}.index", compact('datas', 'title'));
     }
 

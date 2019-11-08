@@ -61,8 +61,10 @@
                         <td>{{$data->pessoa->user_id !="" ? 'ok' : 'fail'}}</td>
                         <td>{{$data->status == 'A'? 'ATIVO':'INATIVO'}} </td>
                         <td>
-                            <a href='{{route('funcionarios.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+                            <a href='{{route('funcionarios.edit', $data->id)}}' class="btn btn-success btn-xs" alt="Editar"><i class="fa fa-edit"></i></a>
                             <a href="{{route('funcionarios.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
+                            <a href="{{route('funcionario.user', $data->pessoa->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-id-card"></i></a>
+
                         </td>
                     </tr>
                     @empty

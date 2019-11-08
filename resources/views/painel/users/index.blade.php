@@ -14,7 +14,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title"><a href="{{route('usuarios.create')}}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> NOVO USUÁRIO</a></h3>
+            <h3 class="box-title"><a href="{{route('usuarios.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVO USUÁRIO</a></h3>
             <div class="box-tools">
                 <form role="form" method="get" action="{{url('painel')}}" enctype="multipart/form-data">
                     {{--{{ csrf_field() }}--}}
@@ -44,8 +44,7 @@
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Email Verificado</th>
-                    <th>Twitter</th>
-                    <th>GitHub</th>
+                    <th>Pessoa</th>
                     <th width="150">Ações</th>
                 </tr>
                 @forelse($datas as $data)
@@ -53,8 +52,11 @@
                         <td>{{$data->name. " " .$data->last_name}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->email_verified_at}}</td>
-                        <td>{{$data->twitter}}</td>
-                        <td>{{$data->github}}</td>
+                        <td>@if (isset($data->pessoa->id))
+                            {{$data->pessoa->nome_razao}}
+                                @else
+                                Sem vinculo
+                        @endif</td>
                         <td>
                             <a href='{{route('usuarios.edit', $data->id)}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
                             <a href="{{route('usuarios.show', $data->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>

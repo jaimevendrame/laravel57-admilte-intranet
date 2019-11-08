@@ -94,6 +94,7 @@
                             <button type="submit" class="btn btn-success">Enviar</button>
                             <button type="reset" class="btn btn-danger">Limpar</button>
                             <a href="{{route('funcionarios.index')}}" class="btn btn-info"><i class="fa fa-undo"></i>  Voltar</a>
+{{--                            <a href="{{route('funcionario.create.user', $pessoa->id)}}" class="btn btn-warning"><i class="fa fa-user"></i>  User</a>--}}
 
                         </div>
                     </div>

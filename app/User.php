@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Idea;
 use App\Models\Permission;
+use App\Models\Pessoa;
 use App\Models\Profile;
 use App\Models\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -98,6 +99,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Sector::class, 'sector_id');
     }
 
+    public function pessoa()
+    {
+        return $this->hasOne(Pessoa::class,'user_id');
+    }
 
 
 

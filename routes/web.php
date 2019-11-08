@@ -175,6 +175,12 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth', 'verified']], funct
 
 //Funcionarios
     Route::any('/funcionarios/pesquisar', 'Painel\FuncionarioController@search')->name('funcionario.search');
+    Route::get('/funcionarios/add-user/{id}', 'Painel\FuncionarioController@createUser')->name('funcionario.create.user');
+    Route::get('/funcionarios/{id}/usuarios', 'Painel\FuncionarioController@users')->name('funcionario.user');
+    Route::post('/funcionarios/{id}/usuarios/cadastrar', 'Painel\FuncionarioController@usersAddPessoa')->name('funcionario.users.add');
+    Route::get('/funcionarios/{id}/usuarios/cadastrar', 'Painel\FuncionarioController@usersAdd')->name('funcionario.users.add');
+    Route::get('/funcionarios/{id}/usuarios/delete', 'Painel\FuncionarioController@deleteUser')->name('funcionario.user.delete');
+
     Route::resource('/funcionarios', 'Painel\FuncionarioController');
 
 

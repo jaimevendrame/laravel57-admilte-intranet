@@ -48,6 +48,8 @@ class ProfileController extends StandardController
             $query->whereRaw("profile_user.profile_id = {$profile->id}");
         })->get();
 
+
+
         $title = "Adicionar usuários ao perfil: {$profile->name}";
 
         return view('painel.profiles.users-add', compact('profile','users', 'title'));
