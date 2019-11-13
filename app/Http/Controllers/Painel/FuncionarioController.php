@@ -120,6 +120,7 @@ class FuncionarioController extends StandardController
                 $query->select('user_id')->from('pessoas')
                     ->Where('user_id','<>',null);
             })
+            ->orderBy('name', 'asc')
             ->get();
 
         $title = "Adicionar usuários a pessoa: {$pessoa->nome_razao} {$pessoa->sobrenome_fantasia}";
