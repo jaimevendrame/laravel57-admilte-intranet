@@ -162,10 +162,10 @@
                         <h4><i class="icon fa fa-birthday-cake"></i> Aniversariantes do mês!</h4>
                             @forelse($niver as $d)
                                 <div class="row">
-                                    <div class="col-md-3 text-truncate">
+                                    <div class="col-md-10 text-truncate">
                                         {{$d->nome_razao." ". $d->sobrenome_fantasia}}
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-2">
                                         <span class="pull-right text-bold">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span>
                                     </div>
                                 </div>
