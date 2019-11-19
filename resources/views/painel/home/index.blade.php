@@ -7,6 +7,16 @@
 @section('content_header')
     <h1>Dashboard</h1><small><span>Painel de Controle</span></small>
 @stop
+@section('adminlte_css')
+    <style>
+        .niver {
+            max-width: 15ch;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+@stop
 
 @section('content')
     <p>Bem vindo ao seu Painel de Controle.</p>
@@ -162,8 +172,8 @@
                         <h4><i class="icon fa fa-birthday-cake"></i> Aniversariantes do mês!</h4>
                             @forelse($niver as $d)
                                 <div class="row">
-                                    <div class="col-md-10">
-                                        <span style=" white-space: nowrap; width:70px; text-overflow: ellipsis; overflow: hidden;">{{$d->nome_razao." ". $d->sobrenome_fantasia}}</span>
+                                    <div class="col-md-10 niver">
+                                        {{$d->nome_razao." ". $d->sobrenome_fantasia}}
                                     </div>
                                     <div class="col-md-2">
                                         <span class="pull-right text-bold align-middle">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span>
