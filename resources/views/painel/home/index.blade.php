@@ -162,8 +162,8 @@
                         <h4><i class="icon fa fa-birthday-cake"></i> Aniversariantes do mês!</h4>
                             @forelse($niver as $d)
                                 <div class="row">
-                                    <div class="col-md-10" >
-                                        <span style=" width :100px; text-overflow-mode: ellipsis;">{{$d->nome_razao." ". $d->sobrenome_fantasia}}</span>
+                                    <div class="col-md-10">
+                                        <span style=" white-space: nowrap; width :100px; text-overflow: ellipsis;">{{$d->nome_razao." ". $d->sobrenome_fantasia}}</span>
                                     </div>
                                     <div class="col-md-2">
                                         <span class="pull-right text-bold align-middle">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span>
