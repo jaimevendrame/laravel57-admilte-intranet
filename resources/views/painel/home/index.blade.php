@@ -10,7 +10,7 @@
 @section('adminlte_css')
     <style>
         .niver {
-            max-width: 15ch;
+            max-width: 85ch;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
