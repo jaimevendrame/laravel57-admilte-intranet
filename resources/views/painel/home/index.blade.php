@@ -162,7 +162,7 @@
                         <h4><i class="icon fa fa-birthday-cake"></i> Aniversariantes do mês!</h4>
                             @forelse($niver as $d)
                                 <div class="row">
-                                    <div class="col-md-10 d-inline-block text-truncate">
+                                    <div class="col-md-10 display: block text-truncate">
                                         {{$d->nome_razao." ". $d->sobrenome_fantasia}}
                                     </div>
                                     <div class="col-md-2">
