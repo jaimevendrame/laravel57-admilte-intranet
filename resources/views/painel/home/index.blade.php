@@ -161,7 +161,13 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4><i class="icon fa fa-birthday-cake"></i> Aniversariantes do mês!</h4>
                             @forelse($niver as $d)
-                            <div><span class="d-inline-block text-truncate" style="max-width: 200px;">{{$d->nome_razao." ". $d->sobrenome_fantasia}}</span> <span class="pull-right text-bold">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span></div>
+                            <div class="col-md-3 text-truncate">
+                                {{$d->nome_razao." ". $d->sobrenome_fantasia}}
+                            </div>
+                        <div class="col-md-1">
+                            <span class="pull-right text-bold">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span>
+                        </div>
+
                             @empty
                                 <p>nenhum registro encontrado! </p>
                             @endforelse
