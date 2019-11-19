@@ -1,8 +1,8 @@
 <div class="box box-widget widget-user-2">
     <div class="widget-user-header bg-light-blue-gradient">
-        <div class="">
+        <div class="widget-user-image">
             @if( isset($data->user->image))
-                <img src="{{URL::asset('/assets/uploads/users/'. $data->user->image)}}" alt="{{ $data->user->name}}" alt="{{ $data->user->name}}" class="user-image2 img-responsive">
+                <img src="{{ asset("storage/users/{$data->user->image}") }}" alt="{{ $data->user->name}}" alt="{{ $data->user->name}}" class="user-image2 img-responsive">
             @else
                 <img src="{{URL::asset('/assets/uploads/users/no-image.png')}}" alt="{{ $data->user->name}}" class="user-image2 img-responsive">
             @endif
@@ -49,6 +49,10 @@
                 <p>{{$data->sector->name}}</p>
             </li>
             @endif
+
+            <li>
+{{--                {{ $data->pessoa->id }}--}}
+            </li>
         </ul>
     </div>
 </div>

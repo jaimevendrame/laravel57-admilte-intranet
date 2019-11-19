@@ -66,4 +66,10 @@ class Idea extends Model
         return $this->belongsTo(Sector::class);
     }
 
+    public function pessoa()
+    {
+        return $this->belongsTo(Pessoa::class, 'assessor_id');
+    }
+
+
 }

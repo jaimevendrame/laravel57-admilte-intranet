@@ -41,11 +41,12 @@
                                 <div class="widget-user-header bg-light-blue-gradient">
                                     <div class="widget-user-image">
                                         @if( isset($data->user->image))
-                                            <img src="{{URL::asset('/assets/uploads/users/'. $data->user->image)}}" alt="{{ $data->user->name}}" class="user-image2 img-rounded img-responsive">
+                                            <img src="{{ asset("storage/users/{$data->user->image}") }}" alt="{{ $data->user->name}}" class="user-image2 img-rounded img-responsive">
                                         @else
                                             <img src="{{URL::asset('/assets/uploads/users/no-image.png')}}" alt="{{ $data->user->name}}" class="user-image2 img-rounded img-responsive">
                                         @endif
                                     </div>
+                                </div>
                                     <h3 class="widget-user-username">{{$data->user->name. " " . $data->user->last_name}}</h3>
                                     <h5 class="widget-user-desc">{{$data->user->email}}</h5>
                                 </div>

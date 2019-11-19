@@ -160,7 +160,7 @@ class IdeaPublicController extends StandardController
         $dataForm[ 'hour'] = $data->hour;
 
 
-        //pegar hora atual
+        //pegar id_user do assessor
         $dataForm[ 'assessor_id'] = Auth::id();
 
         //Verificar se existe a imagem
