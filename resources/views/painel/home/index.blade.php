@@ -166,7 +166,7 @@
                                         {{$d->nome_razao." ". $d->sobrenome_fantasia}}
                                     </div>
                                     <div class="col-md-2">
-                                        <span class="pull-right text-bold">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span>
+                                        <span class="pull-right text-bold align-middle">{{\Carbon\Carbon::parse($d->birth_date_fundacao)->format('d')}} </span>
                                     </div>
                                 </div>
                             @empty
