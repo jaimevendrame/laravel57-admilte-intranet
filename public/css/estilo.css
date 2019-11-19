@@ -61,3 +61,10 @@
 .conteudo-tab{
     padding-top: 10px;
 }
+
+.niver {
+    max-width: 85ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

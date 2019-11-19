@@ -7,16 +7,7 @@
 @section('content_header')
     <h1>Dashboard</h1><small><span>Painel de Controle</span></small>
 @stop
-@section('adminlte_css')
-    <style>
-        .niver {
-            max-width: 85ch;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-    </style>
-@stop
+
 
 @section('content')
     <p>Bem vindo ao seu Painel de Controle.</p>
