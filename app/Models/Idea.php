@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\User;
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
@@ -66,10 +65,17 @@ class Idea extends Model
         return $this->belongsTo(Sector::class);
     }
 
-    public function pessoa()
+
+
+    public function dataFunci()
     {
-        return $this->belongsTo(Pessoa::class, 'assessor_id');
+        $data = $this->user()
+            ->join('pessoas', 'users.id','=', 'pessoas.user_id')
+            ->join('funcionarios', 'pessoas.id', '=', 'funcionarios.pessoa_id')
+            ->join('sectors', 'funcionarios.sector_id', '=', 'sectors.id')
+            ->first();
+
+        return $data;
+
     }
-
-
 }

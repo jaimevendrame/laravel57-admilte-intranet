@@ -38,21 +38,19 @@
                     </li>
                     @endif
             @endif
-            @if(isset($data->assessor_id))
-            <li><h5><strong>Assessor: </strong></h5>
-                <p>{{$data->assessor->name}}</p>
-            </li>
+
+            @if(isset($data->dataFunci()->cargo))
+                <li><h5><strong>Assessor: </strong></h5>
+                    <p>{{ $data->dataFunci()->nome_razao }}</p>
+                </li>
             @endif
 
-            @if(isset($data->sector_id))
-            <li><h5><strong>Setor: </strong></h5>
-                <p>{{$data->sector->name}}</p>
-            </li>
+            @if(isset($data->dataFunci()->cargo))
+                <li><h5><strong>Setor: </strong></h5>
+                    <p>{{ $data->dataFunci()->name }}</p>
+                </li>
             @endif
 
-            <li>
-{{--                {{ $data->pessoa->id }}--}}
-            </li>
         </ul>
     </div>
 </div>

@@ -16,7 +16,7 @@
         <div class="box-header">
             <h3 class="box-title"><a href="{{route('usuarios.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> NOVO USUÁRIO</a></h3>
             <div class="box-tools">
-                <form role="form" method="get" action="{{url('painel')}}" enctype="multipart/form-data">
+                <form role="form" method="get" action="{{route('usuarios.index')}}" enctype="multipart/form-data">
                     {{--{{ csrf_field() }}--}}
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="pesquisa" class="form-control pull-right" placeholder="Pesquisar">

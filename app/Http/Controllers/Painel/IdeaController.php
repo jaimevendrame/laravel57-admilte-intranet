@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use App\Http\Controllers\StandardController;
 use App\Models\Category;
 use App\Models\Idea;
+use App\Models\Pessoa;
 use App\Models\Sector;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -200,11 +201,14 @@ class IdeaController extends StandardController
     public function show($id)
     {
 
+
         //Recuperar usuário
         $data = $this->model->find($id);
 //        dd($data->assessor_id);
 
+        $valor = Pessoa::where('user_id', $data->assessor_id)->first();
 
+//        dd($valor);
 
         $title = "Visualizar {$this->nameSmall}";
 
